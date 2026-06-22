@@ -10,6 +10,15 @@ const groupColors = {
   "Cloud-only": "#2e6fc7"
 };
 
+const shortNames = {
+  "Edge-only": "Edge",
+  "Cloud-only": "Cloud",
+  "Sketch-Guided": "Sketch",
+  "Task-Routing": "Task route",
+  "Step-Routing": "Step route",
+  "Adaptive Assist.": "Assist"
+};
+
 const format = {
   percent: value => `${Number(value).toFixed(2)}`,
   money: value => value === 0 ? "$0.00" : `$${Number(value).toFixed(2)}`,
@@ -72,7 +81,7 @@ function renderLeaderboard() {
         <span class="pill">${item.group}</span>
       </td>
       <td>
-        <strong>${item.model}</strong>
+        <span class="model-name">${item.model}</span>
         <div class="muted">Edge: ${item.edgeModel} | Cloud: ${item.cloudModel}</div>
       </td>
       <td class="metric-cell">
@@ -122,7 +131,7 @@ function renderLeaderboardSummary(rows) {
 function metricBar(value, max, className, label, suffix) {
   const width = max === 0 ? 0 : Math.max(0, Math.min(100, value / max * 100));
   return `
-    <div class="metric-value"><span>${label}</span><small>${suffix}</small></div>
+    <div class="metric-value"><span>${label}</span>${suffix ? `<small>${suffix}</small>` : ""}</div>
     <div class="bar ${className}"><span style="width:${width}%"></span></div>
   `;
 }
@@ -139,7 +148,7 @@ function renderTradeoff() {
   const height = canvas.height / ratio;
   ctx.clearRect(0, 0, width, height);
 
-  const margin = { top: 34, right: 42, bottom: 68, left: 74 };
+  const margin = { top: 66, right: 54, bottom: 76, left: 78 };
   const plot = {
     x: margin.left,
     y: margin.top,
@@ -158,14 +167,16 @@ function renderTradeoff() {
     drawPoint(ctx, x, y, radius, groupColors[item.group], item);
     return { x, y, radius, item };
   });
+  drawPointLabels(ctx, state.points, plot);
+  drawPlotNotes(ctx, plot);
 }
 
 function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
   ctx.save();
-  ctx.strokeStyle = "#d9dfd8";
+  ctx.strokeStyle = "#e2e7e1";
   ctx.fillStyle = "#61706a";
   ctx.lineWidth = 1;
-  ctx.font = "12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+  ctx.font = "11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
   for (let i = 0; i <= 6; i += 1) {
     const x = plot.x + (i / 6) * plot.w;
@@ -188,7 +199,7 @@ function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
   }
 
   ctx.fillStyle = "#17211d";
-  ctx.font = "700 13px ui-sans-serif, system-ui, sans-serif";
+  ctx.font = "650 12px ui-sans-serif, system-ui, sans-serif";
   ctx.fillText("Cloud cost (USD)", plot.x + plot.w / 2 - 54, plot.y + plot.h + 54);
   ctx.save();
   ctx.translate(22, plot.y + plot.h / 2 + 60);
@@ -210,10 +221,42 @@ function drawPoint(ctx, x, y, radius, color, item) {
   ctx.stroke();
   ctx.globalAlpha = 1;
   ctx.fillStyle = "#ffffff";
-  ctx.font = "700 11px ui-sans-serif, system-ui, sans-serif";
+  ctx.font = "700 10px ui-sans-serif, system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(Math.round(item.privacy), x, y);
+  ctx.restore();
+}
+
+function drawPointLabels(ctx, points, plot) {
+  ctx.save();
+  ctx.font = "600 10px ui-sans-serif, system-ui, sans-serif";
+  ctx.textBaseline = "middle";
+  points.forEach(point => {
+    const { item, x, y, radius } = point;
+    const label = shortNames[item.method] || item.method;
+    const alignRight = x > plot.x + plot.w * 0.72;
+    const labelX = alignRight ? x - radius - 7 : x + radius + 7;
+    const labelY = y;
+    ctx.textAlign = alignRight ? "right" : "left";
+    ctx.fillStyle = "rgba(23, 33, 29, 0.72)";
+    ctx.fillText(label, labelX, labelY);
+  });
+  ctx.restore();
+}
+
+function drawPlotNotes(ctx, plot) {
+  ctx.save();
+  ctx.fillStyle = "rgba(97, 112, 106, 0.9)";
+  ctx.font = "11px ui-sans-serif, system-ui, sans-serif";
+  ctx.fillText("Point number = privacy performance", plot.x, plot.y - 18);
+  ctx.fillText("Better utility", plot.x + plot.w - 74, plot.y - 18);
+  ctx.strokeStyle = "rgba(46, 111, 199, 0.55)";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(plot.x + plot.w - 92, plot.y - 22);
+  ctx.lineTo(plot.x + plot.w - 104, plot.y - 22);
+  ctx.stroke();
   ctx.restore();
 }
 

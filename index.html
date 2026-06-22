@@ -101,17 +101,17 @@
         </div>
         <div class="axis-grid">
           <article class="axis-card utility">
-            <span>Utility</span>
+            <span><i class="icon icon-target" aria-hidden="true"></i>Utility</span>
             <h3>Can the agent finish the task?</h3>
             <p>Completion Score and Pass@3 evaluate whether multi-step workspace goals are actually solved.</p>
           </article>
           <article class="axis-card cost">
-            <span>Resource Usage</span>
+            <span><i class="icon icon-coin" aria-hidden="true"></i>Resource Usage</span>
             <h3>How much cloud and edge compute is used?</h3>
             <p>Cloud tokens, estimated API cost, and edge-side FLOPs expose the execution burden.</p>
           </article>
           <article class="axis-card privacy">
-            <span>Privacy Performance</span>
+            <span><i class="icon icon-shield" aria-hidden="true"></i>Privacy Performance</span>
             <h3>What local context reaches the cloud?</h3>
             <p>Risk-weighted non-leakage tracks sensitive units visible to cloud models along the trajectory.</p>
           </article>
@@ -125,22 +125,22 @@
         </div>
         <div class="pipeline">
           <article>
-            <span>01</span>
+            <span><i class="icon icon-folder" aria-hidden="true"></i>01</span>
             <h3>Workspace Tasks</h3>
             <p>User instructions, files, databases, logs, APIs, application states, and task-specific verifiers.</p>
           </article>
           <article>
-            <span>02</span>
+            <span><i class="icon icon-loop" aria-hidden="true"></i>02</span>
             <h3>Agent Harness</h3>
             <p>Agents execute multi-step trajectories while the harness records actions, observations, tool outputs, and model calls.</p>
           </article>
           <article>
-            <span>03</span>
+            <span><i class="icon icon-cloud" aria-hidden="true"></i>03</span>
             <h3>Cloud-Visible Context</h3>
             <p>Each cloud invocation is audited for transmitted context, token usage, and privacy-sensitive units.</p>
           </article>
           <article>
-            <span>04</span>
+            <span><i class="icon icon-chart" aria-hidden="true"></i>04</span>
             <h3>Three-Axis Profile</h3>
             <p>Completion, Pass@3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
           </article>
@@ -162,32 +162,32 @@
         </div>
         <div class="method-grid">
           <article>
-            <span class="method-kicker edge-kicker">Edge-only</span>
+            <span class="method-kicker edge-kicker"><i class="icon icon-device" aria-hidden="true"></i>Edge-only</span>
             <h3>Local execution</h3>
             <p>No cloud exposure, but capability is bounded by the edge model.</p>
           </article>
           <article>
-            <span class="method-kicker cloud-kicker">Cloud-only</span>
+            <span class="method-kicker cloud-kicker"><i class="icon icon-cloud" aria-hidden="true"></i>Cloud-only</span>
             <h3>Full cloud execution</h3>
             <p>Strong capability reference point with higher cloud cost and context exposure.</p>
           </article>
           <article>
-            <span class="method-kicker hybrid-kicker">Pipeline</span>
+            <span class="method-kicker hybrid-kicker"><i class="icon icon-route" aria-hidden="true"></i>Pipeline</span>
             <h3>Sketch-Guided</h3>
             <p>The cloud provides upfront guidance, then the edge model performs the trajectory.</p>
           </article>
           <article>
-            <span class="method-kicker hybrid-kicker">Pre-execution</span>
+            <span class="method-kicker hybrid-kicker"><i class="icon icon-switch" aria-hidden="true"></i>Pre-execution</span>
             <h3>Task-Routing</h3>
             <p>A one-time router assigns the whole task to edge or cloud before execution.</p>
           </article>
           <article>
-            <span class="method-kicker hybrid-kicker">Runtime</span>
+            <span class="method-kicker hybrid-kicker"><i class="icon icon-step" aria-hidden="true"></i>Runtime</span>
             <h3>Step-Routing</h3>
             <p>The edge model escalates uncertain intermediate steps to the cloud.</p>
           </article>
           <article>
-            <span class="method-kicker hybrid-kicker">Assistive</span>
+            <span class="method-kicker hybrid-kicker"><i class="icon icon-help" aria-hidden="true"></i>Assistive</span>
             <h3>Adaptive Assist.</h3>
             <p>The edge agent requests cloud plans or hints when assistance is useful.</p>
           </article>
@@ -199,6 +199,10 @@
           <div>
             <p class="eyebrow">Leaderboard</p>
             <h2>Ranked by Completion Score, with privacy and cost kept visible.</h2>
+            <p class="section-intro">
+              The default rank is task utility. Cost and privacy are shown beside it so high-performing methods do
+              not hide their deployment trade-offs.
+            </p>
           </div>
           <div class="leaderboard-controls" aria-label="Leaderboard filters">
             <label>
@@ -251,15 +255,25 @@
           <div>
             <p class="eyebrow">Trade-off Explorer</p>
             <h2>Utility, cost, and privacy form the benchmark's central decision surface.</h2>
+            <p class="section-intro">
+              Each point is one execution strategy. Move right for higher cloud cost, move up for higher completion,
+              and read the point size/label as privacy performance.
+            </p>
           </div>
-          <div class="legend" aria-label="Plot legend">
+          <div class="plot-legend" aria-label="Plot legend">
             <span><i class="dot edge-dot"></i> Edge-only</span>
             <span><i class="dot hybrid-dot"></i> Edge-Cloud</span>
             <span><i class="dot cloud-dot"></i> Cloud-only</span>
+            <span><i class="size-key"></i> Larger point = higher privacy</span>
           </div>
         </div>
         <div class="plot-layout">
           <div class="plot-card">
+            <div class="plot-caption">
+              <span><i class="icon icon-target" aria-hidden="true"></i>Y: Completion Score</span>
+              <span><i class="icon icon-coin" aria-hidden="true"></i>X: Cloud Cost</span>
+              <span><i class="icon icon-shield" aria-hidden="true"></i>Bubble: Privacy</span>
+            </div>
             <canvas id="tradeoff-canvas" width="960" height="560" aria-label="Cloud cost versus completion score plot"></canvas>
             <div id="plot-tooltip" role="status" aria-live="polite"></div>
           </div>
@@ -291,22 +305,22 @@
         </div>
         <div class="resource-grid">
           <article>
-            <span>01</span>
+            <span><i class="icon icon-code" aria-hidden="true"></i>01</span>
             <h3>Code and Dataset</h3>
             <p>Benchmark tasks, executable workspaces, verifiers, and collaboration strategy implementations.</p>
           </article>
           <article>
-            <span>02</span>
+            <span><i class="icon icon-table" aria-hidden="true"></i>02</span>
             <h3>Result Schema</h3>
             <p>Leaderboard entries are stored in <code>data/results.json</code> for easy updates and review.</p>
           </article>
           <article>
-            <span>03</span>
+            <span><i class="icon icon-clipboard" aria-hidden="true"></i>03</span>
             <h3>Reporting Protocol</h3>
             <p>Report Completion, Pass@3, cloud tokens, cloud cost, edge FLOPs, and privacy performance together.</p>
           </article>
           <article>
-            <span>04</span>
+            <span><i class="icon icon-check" aria-hidden="true"></i>04</span>
             <h3>Submission Checklist</h3>
             <p>Include method name, edge model, cloud model, routing pattern, pricing assumptions, and run count.</p>
           </article>
