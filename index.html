@@ -44,8 +44,57 @@
         </div>
 
         <div class="hero-visual" aria-label="Edge cloud collaboration overview">
-          <div class="hero-figure">
-            <img src="assets/acebench-overview.png" alt="Edge-cloud collaboration for LLM agents overview">
+          <div class="hero-system-map">
+            <div class="system-zone local-zone">
+              <div class="zone-head">
+                <span class="zone-kicker">Edge / Local</span>
+                <strong>Keep workspace context private</strong>
+              </div>
+              <div class="workspace-stack">
+                <span><i class="icon icon-folder" aria-hidden="true"></i>Files</span>
+                <span><i class="icon icon-table" aria-hidden="true"></i>Data</span>
+                <span><i class="icon icon-code" aria-hidden="true"></i>Tools</span>
+                <span><i class="icon icon-loop" aria-hidden="true"></i>App state</span>
+              </div>
+              <div class="agent-loop">
+                <span>Think</span>
+                <span>Act</span>
+                <span>Observe</span>
+              </div>
+            </div>
+
+            <div class="system-gate">
+              <span class="gate-badge"><i class="icon icon-shield" aria-hidden="true"></i></span>
+              <strong>Selective context gate</strong>
+              <p>Only necessary state is sent to the cloud.</p>
+              <div class="gate-tags">
+                <span>filter</span>
+                <span>summarize</span>
+                <span>route</span>
+              </div>
+            </div>
+
+            <div class="system-zone cloud-zone">
+              <div class="zone-head">
+                <span class="zone-kicker">Cloud / Remote</span>
+                <strong>Use stronger capability when needed</strong>
+              </div>
+              <div class="cloud-actions">
+                <span>Plan</span>
+                <span>Recover</span>
+                <span>Verify</span>
+              </div>
+              <div class="cloud-return">guidance returns to edge agent</div>
+            </div>
+
+            <div class="system-flow send-flow">selected context</div>
+            <div class="system-flow return-system-flow">hint / plan / recovery</div>
+
+            <div class="hero-gauges">
+              <div class="mini-gauge utility-gauge"><span></span><strong>Utility</strong><small>task success</small></div>
+              <div class="mini-gauge cost-gauge"><span></span><strong>Cost</strong><small>cloud usage</small></div>
+              <div class="mini-gauge privacy-gauge"><span></span><strong>Privacy</strong><small>context exposure</small></div>
+            </div>
           </div>
         </div>
       </section>
