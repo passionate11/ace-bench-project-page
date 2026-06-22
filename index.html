@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Agentic Cloud-Edge Collaboration Benchmark for evaluating utility, cloud cost, and privacy in workspace-grounded LLM agents."
+    >
+    <title>Agentic Cloud-Edge Collaboration Benchmark</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="ACE-BENCH home">
+        <span class="brand-mark">ACE</span>
+        <span class="brand-text">BENCH</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#benchmark">Benchmark</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#tradeoff">Trade-off</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow">ACE-BENCH</p>
+          <h1>Agentic Cloud-Edge Collaboration Benchmark</h1>
+          <p class="hero-summary">
+            A multi-dimensional benchmark for studying how workspace-grounded LLM agents trade task utility,
+            cloud-side resource usage, and privacy exposure under edge-cloud collaboration.
+          </p>
+          <div class="hero-actions" aria-label="Project links">
+            <a class="action primary" href="https://github.com/OpenBMB/AceBench">Code</a>
+            <a class="action" href="#leaderboard">Leaderboard</a>
+            <a class="action" href="#citation">BibTeX</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Edge cloud collaboration comparison">
+          <div class="execution-map">
+            <div class="map-column edge">
+              <span class="map-label">Edge-only</span>
+              <div class="node">Local model</div>
+              <div class="signal good">Privacy 100</div>
+              <div class="signal muted">Capability bottleneck</div>
+            </div>
+            <div class="map-column hybrid">
+              <span class="map-label">Edge-cloud</span>
+              <div class="node split">Edge executor</div>
+              <div class="route-line">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="node cloud-node">Selective cloud</div>
+              <div class="signal good">Balanced trade-off</div>
+            </div>
+            <div class="map-column cloud">
+              <span class="map-label">Cloud-only</span>
+              <div class="node cloud-node">Frontier model</div>
+              <div class="signal good">High utility</div>
+              <div class="signal risk">High exposure</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="metric-strip" aria-label="Benchmark statistics">
+        <article>
+          <strong id="task-count">128</strong>
+          <span>Executable tasks</span>
+        </article>
+        <article>
+          <strong id="privacy-task-count">100</strong>
+          <span>Privacy-annotated tasks</span>
+        </article>
+        <article>
+          <strong id="strategy-count">6</strong>
+          <span>Strategy families</span>
+        </article>
+        <article>
+          <strong>3</strong>
+          <span>Evaluation axes</span>
+        </article>
+      </section>
+
+      <section id="benchmark" class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Benchmark Design</p>
+          <h2>Executable agent tasks with trajectory-level cloud exposure auditing.</h2>
+        </div>
+        <div class="pipeline">
+          <article>
+            <span>01</span>
+            <h3>Workspace Tasks</h3>
+            <p>User instructions, files, databases, logs, APIs, application states, and task-specific verifiers.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Agent Harness</h3>
+            <p>Agents execute multi-step trajectories while the harness records actions, observations, tool outputs, and model calls.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Cloud-Visible Context</h3>
+            <p>Each cloud invocation is audited for transmitted context, token usage, and privacy-sensitive units.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Three-Axis Profile</h3>
+            <p>Completion, Pass@3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="leaderboard" class="section-block leaderboard-block">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Leaderboard</p>
+            <h2>Ranked by Completion Score, with privacy and cost kept visible.</h2>
+          </div>
+          <div class="leaderboard-controls" aria-label="Leaderboard filters">
+            <label>
+              Strategy
+              <select id="group-filter">
+                <option value="all">All strategies</option>
+                <option value="Edge-only">Edge-only</option>
+                <option value="Cloud-only">Cloud-only</option>
+                <option value="Edge-Cloud">Edge-Cloud</option>
+              </select>
+            </label>
+            <label>
+              Sort
+              <select id="sort-select">
+                <option value="completion">Completion Score</option>
+                <option value="privacy">Privacy</option>
+                <option value="cloudCostAsc">Cloud Cost</option>
+                <option value="pass3">Pass@3</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Method</th>
+                <th>Models</th>
+                <th>Completion</th>
+                <th>Pass@3</th>
+                <th>Cloud Cost</th>
+                <th>Privacy</th>
+                <th>Cloud Tok. R/C/O</th>
+                <th>Edge FLOPs</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tradeoff" class="section-block tradeoff-block">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Trade-off Explorer</p>
+            <h2>Utility, cost, and privacy form the benchmark's central decision surface.</h2>
+          </div>
+          <div class="legend" aria-label="Plot legend">
+            <span><i class="dot edge-dot"></i> Edge-only</span>
+            <span><i class="dot hybrid-dot"></i> Edge-Cloud</span>
+            <span><i class="dot cloud-dot"></i> Cloud-only</span>
+          </div>
+        </div>
+        <div class="plot-layout">
+          <div class="plot-card">
+            <canvas id="tradeoff-canvas" width="960" height="560" aria-label="Cloud cost versus completion score plot"></canvas>
+            <div id="plot-tooltip" role="status" aria-live="polite"></div>
+          </div>
+          <div class="finding-panel">
+            <h3>Key Findings</h3>
+            <p>
+              Cloud-only systems deliver strong task utility, but expose much more local context. Edge-only systems
+              preserve privacy, yet lose capability on long-horizon workspace tasks.
+            </p>
+            <p>
+              Edge-cloud collaboration improves the operating point by selectively invoking cloud capability, but the
+              result depends on when the cloud is used and what context is transmitted.
+            </p>
+            <p>
+              Stronger edge models shift the preferred pattern from step-level fallback toward task routing, planning,
+              and recovery guidance.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="citation" class="section-block citation-block">
+        <div class="section-heading">
+          <p class="eyebrow">Citation</p>
+          <h2>Reference ACE-BENCH in your work.</h2>
+        </div>
+        <pre><code>@misc{huang2026acebench,
+  title  = {Empowering Edge Agents: A Systematic Analysis of Edge-Cloud Collaboration in LLM Agent Execution},
+  author = {Huang, Pengcheng and Liu, Zhenghao and Xiao, Chaojun and Yan, Yukun and Yu, Shi and Yao, Sijia and Gu, Yu and Yu, Ge and Sun, Maosong},
+  year   = {2026},
+  url    = {https://github.com/OpenBMB/AceBench}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      <span>ACE-BENCH</span>
+      <span>Agentic cloud-edge collaboration for workspace-grounded LLM agents.</span>
+    </footer>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
