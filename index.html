@@ -17,9 +17,12 @@
         <span class="brand-text">BENCH</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#evaluation">Evaluation</a>
         <a href="#benchmark">Benchmark</a>
+        <a href="#methods">Methods</a>
         <a href="#leaderboard">Leaderboard</a>
         <a href="#tradeoff">Trade-off</a>
+        <a href="#resources">Resources</a>
         <a href="#citation">Citation</a>
       </nav>
     </header>
@@ -86,6 +89,35 @@
         </article>
       </section>
 
+      <section id="evaluation" class="section-block axes-block">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Evaluation Profile</p>
+            <h2>ACE-BENCH reports every strategy as a utility, cost, and privacy profile.</h2>
+          </div>
+          <p class="section-side-note">
+            The benchmark avoids hiding deployment trade-offs inside a single scalar score.
+          </p>
+        </div>
+        <div class="axis-grid">
+          <article class="axis-card utility">
+            <span>Utility</span>
+            <h3>Can the agent finish the task?</h3>
+            <p>Completion Score and Pass@3 evaluate whether multi-step workspace goals are actually solved.</p>
+          </article>
+          <article class="axis-card cost">
+            <span>Resource Usage</span>
+            <h3>How much cloud and edge compute is used?</h3>
+            <p>Cloud tokens, estimated API cost, and edge-side FLOPs expose the execution burden.</p>
+          </article>
+          <article class="axis-card privacy">
+            <span>Privacy Performance</span>
+            <h3>What local context reaches the cloud?</h3>
+            <p>Risk-weighted non-leakage tracks sensitive units visible to cloud models along the trajectory.</p>
+          </article>
+        </div>
+      </section>
+
       <section id="benchmark" class="section-block">
         <div class="section-heading">
           <p class="eyebrow">Benchmark Design</p>
@@ -111,6 +143,53 @@
             <span>04</span>
             <h3>Three-Axis Profile</h3>
             <p>Completion, Pass@3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
+          </article>
+        </div>
+        <div class="task-taxonomy" aria-label="Task coverage">
+          <span>Information Retrieval</span>
+          <span>Content Generation</span>
+          <span>Data Analysis</span>
+          <span>Office Productivity</span>
+          <span>Development</span>
+          <span>Workflow Automation</span>
+        </div>
+      </section>
+
+      <section id="methods" class="section-block methods-block">
+        <div class="section-heading">
+          <p class="eyebrow">Strategy Coverage</p>
+          <h2>Single-side baselines and four representative edge-cloud coordination patterns.</h2>
+        </div>
+        <div class="method-grid">
+          <article>
+            <span class="method-kicker edge-kicker">Edge-only</span>
+            <h3>Local execution</h3>
+            <p>No cloud exposure, but capability is bounded by the edge model.</p>
+          </article>
+          <article>
+            <span class="method-kicker cloud-kicker">Cloud-only</span>
+            <h3>Full cloud execution</h3>
+            <p>Strong capability reference point with higher cloud cost and context exposure.</p>
+          </article>
+          <article>
+            <span class="method-kicker hybrid-kicker">Pipeline</span>
+            <h3>Sketch-Guided</h3>
+            <p>The cloud provides upfront guidance, then the edge model performs the trajectory.</p>
+          </article>
+          <article>
+            <span class="method-kicker hybrid-kicker">Pre-execution</span>
+            <h3>Task-Routing</h3>
+            <p>A one-time router assigns the whole task to edge or cloud before execution.</p>
+          </article>
+          <article>
+            <span class="method-kicker hybrid-kicker">Runtime</span>
+            <h3>Step-Routing</h3>
+            <p>The edge model escalates uncertain intermediate steps to the cloud.</p>
+          </article>
+          <article>
+            <span class="method-kicker hybrid-kicker">Assistive</span>
+            <h3>Adaptive Assist.</h3>
+            <p>The edge agent requests cloud plans or hints when assistance is useful.</p>
           </article>
         </div>
       </section>
@@ -142,6 +221,7 @@
             </label>
           </div>
         </div>
+        <div id="leaderboard-summary" class="leaderboard-summary" aria-label="Leaderboard summary"></div>
         <div class="table-shell">
           <table>
             <thead>
@@ -160,6 +240,10 @@
             <tbody id="leaderboard-body"></tbody>
           </table>
         </div>
+        <p class="leaderboard-note">
+          Cloud Tok. R/C/O reports raw input, cache-read input, and output tokens in millions. Privacy is computed
+          on the 100 privacy-annotated tasks, where higher is better.
+        </p>
       </section>
 
       <section id="tradeoff" class="section-block tradeoff-block">
@@ -194,6 +278,38 @@
               and recovery guidance.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section id="resources" class="section-block resources-block">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Resources</p>
+            <h2>Everything needed to reproduce, extend, and submit benchmark results.</h2>
+          </div>
+          <a class="action" href="https://github.com/OpenBMB/AceBench">GitHub Repository</a>
+        </div>
+        <div class="resource-grid">
+          <article>
+            <span>01</span>
+            <h3>Code and Dataset</h3>
+            <p>Benchmark tasks, executable workspaces, verifiers, and collaboration strategy implementations.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Result Schema</h3>
+            <p>Leaderboard entries are stored in <code>data/results.json</code> for easy updates and review.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Reporting Protocol</h3>
+            <p>Report Completion, Pass@3, cloud tokens, cloud cost, edge FLOPs, and privacy performance together.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Submission Checklist</h3>
+            <p>Include method name, edge model, cloud model, routing pattern, pricing assumptions, and run count.</p>
+          </article>
         </div>
       </section>
 

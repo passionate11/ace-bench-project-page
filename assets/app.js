@@ -58,14 +58,16 @@ function getSortedResults() {
 function renderLeaderboard() {
   const body = document.getElementById("leaderboard-body");
   state.filtered = getSortedResults();
+  renderLeaderboardSummary(state.filtered);
   const maxCost = Math.max(...state.results.map(item => item.cloudCost));
   body.innerHTML = state.filtered.map((item, index) => `
-    <tr>
+    <tr class="${index === 0 ? "top-row" : ""}">
       <td class="rank">#${index + 1}</td>
       <td>
         <div class="method-name">
           <span class="dot" style="background:${groupColors[item.group]}"></span>
           <span>${item.method}</span>
+          ${index === 0 ? '<span class="top-badge">Top</span>' : ""}
         </div>
         <span class="pill">${item.group}</span>
       </td>
@@ -87,6 +89,34 @@ function renderLeaderboard() {
       <td>${format.flops(item.edgeFlops)}</td>
     </tr>
   `).join("");
+}
+
+function renderLeaderboardSummary(rows) {
+  const summary = document.getElementById("leaderboard-summary");
+  if (!rows.length) {
+    summary.innerHTML = "";
+    return;
+  }
+  const byCompletion = [...rows].sort((a, b) => b.completion - a.completion)[0];
+  const byPrivacy = [...rows].sort((a, b) => b.privacy - a.privacy || b.completion - a.completion)[0];
+  const byCost = [...rows].sort((a, b) => a.cloudCost - b.cloudCost || b.completion - a.completion)[0];
+  summary.innerHTML = `
+    <article class="summary-card">
+      <span class="summary-label">Best Completion</span>
+      <span class="summary-value">${byCompletion.method}</span>
+      <span class="summary-meta">${byCompletion.model} | ${format.percent(byCompletion.completion)}%</span>
+    </article>
+    <article class="summary-card">
+      <span class="summary-label">Lowest Cloud Cost</span>
+      <span class="summary-value">${byCost.method}</span>
+      <span class="summary-meta">${byCost.model} | ${format.money(byCost.cloudCost)}</span>
+    </article>
+    <article class="summary-card">
+      <span class="summary-label">Highest Privacy</span>
+      <span class="summary-value">${byPrivacy.method}</span>
+      <span class="summary-meta">${byPrivacy.model} | ${format.percent(byPrivacy.privacy)}%</span>
+    </article>
+  `;
 }
 
 function metricBar(value, max, className, label, suffix) {
