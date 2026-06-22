@@ -149,31 +149,31 @@ function renderTradeoff() {
   const canvas = document.getElementById("tradeoff-canvas");
   const rect = canvas.getBoundingClientRect();
   const ratio = window.devicePixelRatio || 1;
-  canvas.width = Math.max(720, rect.width) * ratio;
-  canvas.height = Math.max(480, rect.height || 520) * ratio;
+  canvas.width = Math.max(900, rect.width) * ratio;
+  canvas.height = Math.max(680, rect.height || 680) * ratio;
   const ctx = canvas.getContext("2d");
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
   const width = canvas.width / ratio;
   const height = canvas.height / ratio;
   ctx.clearRect(0, 0, width, height);
 
-  const margin = { top: 72, right: 60, bottom: 78, left: 78 };
+  const margin = { top: 86, right: 70, bottom: 86, left: 86 };
   const plot = {
     x: margin.left,
     y: margin.top,
     w: width - margin.left - margin.right,
     h: height - margin.top - margin.bottom
   };
-  const xMax = 36;
-  const yMin = 36;
-  const yMax = 76;
+  const xMax = 35;
+  const yMin = 38;
+  const yMax = 75;
 
   drawPlotFrame(ctx, plot, xMax, yMin, yMax);
   drawBackboneContours(ctx, plot, xMax, yMin, yMax);
   state.points = state.results.map(item => {
     const x = plot.x + (item.cloudCost / xMax) * plot.w;
     const y = plot.y + (1 - ((item.completion - yMin) / (yMax - yMin))) * plot.h;
-    const radius = item.group === "Cloud-only" ? 15 : 14;
+    const radius = item.group === "Cloud-only" ? 22 : 20;
     drawPoint(ctx, x, y, radius, item);
     return { x, y, radius, item };
   });
@@ -203,19 +203,19 @@ function drawBackboneContours(ctx, plot, xMax, yMin, yMax) {
   groups.forEach((group, index) => {
     const points = group.items.map(item => plotPosition(item, plot, xMax, yMin, yMax));
     if (!points.length) return;
-    const minX = Math.min(...points.map(point => point.x)) - 24;
-    const maxX = Math.max(...points.map(point => point.x)) + 24;
-    const minY = Math.min(...points.map(point => point.y)) - 28;
-    const maxY = Math.max(...points.map(point => point.y)) + 28;
+    const minX = Math.min(...points.map(point => point.x)) - 34;
+    const maxX = Math.max(...points.map(point => point.x)) + 34;
+    const minY = Math.min(...points.map(point => point.y)) - 38;
+    const maxY = Math.max(...points.map(point => point.y)) + 38;
     ctx.setLineDash([8, 7]);
-    ctx.lineWidth = 1.3;
+    ctx.lineWidth = 1.6;
     ctx.strokeStyle = index === 0 ? "rgba(183, 121, 31, 0.42)" : "rgba(22, 133, 95, 0.42)";
     roundedRect(ctx, minX, minY, maxX - minX, maxY - minY, 22);
     ctx.stroke();
     ctx.setLineDash([]);
     ctx.fillStyle = index === 0 ? "rgba(183, 121, 31, 0.8)" : "rgba(22, 133, 95, 0.8)";
-    ctx.font = "600 11px ui-sans-serif, system-ui, sans-serif";
-    ctx.fillText(group.label, minX + 10, minY + 16);
+    ctx.font = "700 14px ui-sans-serif, system-ui, sans-serif";
+    ctx.fillText(group.label, minX + 12, minY + 22);
   });
   ctx.restore();
 }
@@ -239,7 +239,7 @@ function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
   ctx.strokeStyle = "#e2e7e1";
   ctx.fillStyle = "#61706a";
   ctx.lineWidth = 1;
-  ctx.font = "11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+  ctx.font = "13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
   for (let i = 0; i <= 6; i += 1) {
     const x = plot.x + (i / 6) * plot.w;
@@ -248,7 +248,7 @@ function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
     ctx.moveTo(x, plot.y);
     ctx.lineTo(x, plot.y + plot.h);
     ctx.stroke();
-    ctx.fillText(`$${value}`, x - 10, plot.y + plot.h + 28);
+    ctx.fillText(`$${value}`, x - 12, plot.y + plot.h + 32);
   }
 
   for (let i = 0; i <= 5; i += 1) {
@@ -258,14 +258,14 @@ function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
     ctx.moveTo(plot.x, y);
     ctx.lineTo(plot.x + plot.w, y);
     ctx.stroke();
-    ctx.fillText(`${value}`, plot.x - 42, y + 4);
+    ctx.fillText(`${value}`, plot.x - 46, y + 5);
   }
 
   ctx.fillStyle = "#17211d";
-  ctx.font = "650 12px ui-sans-serif, system-ui, sans-serif";
-  ctx.fillText("Cloud cost (USD)", plot.x + plot.w / 2 - 54, plot.y + plot.h + 54);
+  ctx.font = "700 15px ui-sans-serif, system-ui, sans-serif";
+  ctx.fillText("Cloud cost (USD)", plot.x + plot.w / 2 - 66, plot.y + plot.h + 60);
   ctx.save();
-  ctx.translate(22, plot.y + plot.h / 2 + 60);
+  ctx.translate(24, plot.y + plot.h / 2 + 68);
   ctx.rotate(-Math.PI / 2);
   ctx.fillText("Completion score", 0, 0);
   ctx.restore();
@@ -297,7 +297,7 @@ function drawPoint(ctx, x, y, radius, item) {
     }
   }
   ctx.fillStyle = item.group === "Edge-only" ? color : "#ffffff";
-  ctx.font = "750 10px ui-sans-serif, system-ui, sans-serif";
+  ctx.font = "800 13px ui-sans-serif, system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(Math.round(item.privacy), x, y + (item.group === "Cloud-only" ? 1 : 0));
@@ -334,13 +334,13 @@ function drawStar(ctx, x, y, radius, color) {
 
 function drawPointLabels(ctx, points, plot) {
   ctx.save();
-  ctx.font = "600 10px ui-sans-serif, system-ui, sans-serif";
+  ctx.font = "650 13px ui-sans-serif, system-ui, sans-serif";
   ctx.textBaseline = "middle";
   points.forEach(point => {
     const { item, x, y, radius } = point;
     const label = item.group === "Cloud-only" ? item.cloudModel : `${shortNames[item.method] || item.method} / ${item.edgeModel.replace("Qwen3.5-", "")}`;
     const alignRight = x > plot.x + plot.w * 0.72;
-    const labelX = alignRight ? x - radius - 7 : x + radius + 7;
+    const labelX = alignRight ? x - radius - 10 : x + radius + 10;
     const labelY = y;
     ctx.textAlign = alignRight ? "right" : "left";
     ctx.fillStyle = "rgba(23, 33, 29, 0.72)";
@@ -352,14 +352,14 @@ function drawPointLabels(ctx, points, plot) {
 function drawPlotNotes(ctx, plot) {
   ctx.save();
   ctx.fillStyle = "rgba(97, 112, 106, 0.9)";
-  ctx.font = "11px ui-sans-serif, system-ui, sans-serif";
-  ctx.fillText("Number inside marker = privacy performance", plot.x, plot.y - 18);
-  ctx.fillText("Higher utility", plot.x + plot.w - 70, plot.y - 18);
+  ctx.font = "13px ui-sans-serif, system-ui, sans-serif";
+  ctx.fillText("Number inside marker = privacy performance", plot.x, plot.y - 24);
+  ctx.fillText("Higher utility", plot.x + plot.w - 88, plot.y - 24);
   ctx.strokeStyle = "rgba(46, 111, 199, 0.55)";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.moveTo(plot.x + plot.w - 92, plot.y - 22);
-  ctx.lineTo(plot.x + plot.w - 104, plot.y - 22);
+  ctx.moveTo(plot.x + plot.w - 112, plot.y - 28);
+  ctx.lineTo(plot.x + plot.w - 128, plot.y - 28);
   ctx.stroke();
   ctx.restore();
 }
