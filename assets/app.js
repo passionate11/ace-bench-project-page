@@ -10,6 +10,15 @@ const groupColors = {
   "Cloud-only": "#2e6fc7"
 };
 
+const methodColors = {
+  "Sketch-Guided": "#2f9a70",
+  "Task-Routing": "#b7791f",
+  "Step-Routing": "#8a6bd1",
+  "Adaptive Assist.": "#d36b4c",
+  "Edge-only": "#16855f",
+  "Cloud-only": "#2e6fc7"
+};
+
 const shortNames = {
   "Edge-only": "Edge",
   "Cloud-only": "Cloud",
@@ -148,7 +157,7 @@ function renderTradeoff() {
   const height = canvas.height / ratio;
   ctx.clearRect(0, 0, width, height);
 
-  const margin = { top: 66, right: 54, bottom: 76, left: 78 };
+  const margin = { top: 72, right: 60, bottom: 78, left: 78 };
   const plot = {
     x: margin.left,
     y: margin.top,
@@ -160,15 +169,69 @@ function renderTradeoff() {
   const yMax = 76;
 
   drawPlotFrame(ctx, plot, xMax, yMin, yMax);
+  drawBackboneContours(ctx, plot, xMax, yMin, yMax);
   state.points = state.results.map(item => {
     const x = plot.x + (item.cloudCost / xMax) * plot.w;
     const y = plot.y + (1 - ((item.completion - yMin) / (yMax - yMin))) * plot.h;
-    const radius = 8 + item.privacy / 12;
-    drawPoint(ctx, x, y, radius, groupColors[item.group], item);
+    const radius = item.group === "Cloud-only" ? 15 : 14;
+    drawPoint(ctx, x, y, radius, item);
     return { x, y, radius, item };
   });
   drawPointLabels(ctx, state.points, plot);
   drawPlotNotes(ctx, plot);
+}
+
+function plotPosition(item, plot, xMax, yMin, yMax) {
+  return {
+    x: plot.x + (item.cloudCost / xMax) * plot.w,
+    y: plot.y + (1 - ((item.completion - yMin) / (yMax - yMin))) * plot.h
+  };
+}
+
+function drawBackboneContours(ctx, plot, xMax, yMin, yMax) {
+  const groups = [
+    {
+      label: "Qwen3.5-9B",
+      items: state.results.filter(item => item.edgeModel === "Qwen3.5-9B" || item.model === "Qwen3.5-9B")
+    },
+    {
+      label: "Qwen3.5-27B",
+      items: state.results.filter(item => item.edgeModel === "Qwen3.5-27B" || item.model === "Qwen3.5-27B")
+    }
+  ];
+  ctx.save();
+  groups.forEach((group, index) => {
+    const points = group.items.map(item => plotPosition(item, plot, xMax, yMin, yMax));
+    if (!points.length) return;
+    const minX = Math.min(...points.map(point => point.x)) - 24;
+    const maxX = Math.max(...points.map(point => point.x)) + 24;
+    const minY = Math.min(...points.map(point => point.y)) - 28;
+    const maxY = Math.max(...points.map(point => point.y)) + 28;
+    ctx.setLineDash([8, 7]);
+    ctx.lineWidth = 1.3;
+    ctx.strokeStyle = index === 0 ? "rgba(183, 121, 31, 0.42)" : "rgba(22, 133, 95, 0.42)";
+    roundedRect(ctx, minX, minY, maxX - minX, maxY - minY, 22);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = index === 0 ? "rgba(183, 121, 31, 0.8)" : "rgba(22, 133, 95, 0.8)";
+    ctx.font = "600 11px ui-sans-serif, system-ui, sans-serif";
+    ctx.fillText(group.label, minX + 10, minY + 16);
+  });
+  ctx.restore();
+}
+
+function roundedRect(ctx, x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + width - r, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+  ctx.lineTo(x + width, y + height - r);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+  ctx.lineTo(x + r, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
 }
 
 function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
@@ -209,23 +272,64 @@ function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
   ctx.restore();
 }
 
-function drawPoint(ctx, x, y, radius, color, item) {
+function drawPoint(ctx, x, y, radius, item) {
   ctx.save();
-  ctx.globalAlpha = 0.88;
-  ctx.fillStyle = color;
+  const color = methodColors[item.method] || groupColors[item.group];
+  if (item.group === "Cloud-only") {
+    drawStar(ctx, x, y, radius, color);
+  } else {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    if (item.group === "Edge-only") {
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.lineWidth = 2.6;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    } else {
+      ctx.globalAlpha = 0.92;
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#ffffff";
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+  }
+  ctx.fillStyle = item.group === "Edge-only" ? color : "#ffffff";
+  ctx.font = "750 10px ui-sans-serif, system-ui, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(Math.round(item.privacy), x, y + (item.group === "Cloud-only" ? 1 : 0));
+  ctx.restore();
+}
+
+function drawStar(ctx, x, y, radius, color) {
+  const spikes = 5;
+  const outerRadius = radius;
+  const innerRadius = radius * 0.48;
+  let rotation = Math.PI / 2 * 3;
+  let cx = x;
+  let cy = y;
   ctx.beginPath();
-  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.moveTo(x, y - outerRadius);
+  for (let i = 0; i < spikes; i += 1) {
+    cx = x + Math.cos(rotation) * outerRadius;
+    cy = y + Math.sin(rotation) * outerRadius;
+    ctx.lineTo(cx, cy);
+    rotation += Math.PI / spikes;
+    cx = x + Math.cos(rotation) * innerRadius;
+    cy = y + Math.sin(rotation) * innerRadius;
+    ctx.lineTo(cx, cy);
+    rotation += Math.PI / spikes;
+  }
+  ctx.lineTo(x, y - outerRadius);
+  ctx.closePath();
+  ctx.fillStyle = color;
   ctx.fill();
   ctx.lineWidth = 2;
   ctx.strokeStyle = "#ffffff";
   ctx.stroke();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "700 10px ui-sans-serif, system-ui, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText(Math.round(item.privacy), x, y);
-  ctx.restore();
 }
 
 function drawPointLabels(ctx, points, plot) {
@@ -234,7 +338,7 @@ function drawPointLabels(ctx, points, plot) {
   ctx.textBaseline = "middle";
   points.forEach(point => {
     const { item, x, y, radius } = point;
-    const label = shortNames[item.method] || item.method;
+    const label = item.group === "Cloud-only" ? item.cloudModel : `${shortNames[item.method] || item.method} / ${item.edgeModel.replace("Qwen3.5-", "")}`;
     const alignRight = x > plot.x + plot.w * 0.72;
     const labelX = alignRight ? x - radius - 7 : x + radius + 7;
     const labelY = y;
@@ -249,8 +353,8 @@ function drawPlotNotes(ctx, plot) {
   ctx.save();
   ctx.fillStyle = "rgba(97, 112, 106, 0.9)";
   ctx.font = "11px ui-sans-serif, system-ui, sans-serif";
-  ctx.fillText("Point number = privacy performance", plot.x, plot.y - 18);
-  ctx.fillText("Better utility", plot.x + plot.w - 74, plot.y - 18);
+  ctx.fillText("Number inside marker = privacy performance", plot.x, plot.y - 18);
+  ctx.fillText("Higher utility", plot.x + plot.w - 70, plot.y - 18);
   ctx.strokeStyle = "rgba(46, 111, 199, 0.55)";
   ctx.lineWidth = 1.5;
   ctx.beginPath();

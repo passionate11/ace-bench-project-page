@@ -43,28 +43,51 @@
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="Edge cloud collaboration comparison">
-          <div class="execution-map">
-            <div class="map-column edge">
-              <span class="map-label">Edge-only</span>
-              <div class="node">Local model</div>
-              <div class="signal good">Privacy 100</div>
-              <div class="signal muted">Capability bottleneck</div>
-            </div>
-            <div class="map-column hybrid">
-              <span class="map-label">Edge-cloud</span>
-              <div class="node split">Edge executor</div>
-              <div class="route-line">
-                <span></span><span></span><span></span>
+        <div class="hero-visual" aria-label="Edge cloud collaboration workflow">
+          <div class="collab-diagram">
+            <div class="workspace-panel">
+              <span class="diagram-label">Local workspace</span>
+              <div class="workspace-grid">
+                <span><i class="icon icon-folder" aria-hidden="true"></i>Files</span>
+                <span><i class="icon icon-code" aria-hidden="true"></i>Tools</span>
+                <span><i class="icon icon-table" aria-hidden="true"></i>Data</span>
+                <span><i class="icon icon-loop" aria-hidden="true"></i>State</span>
               </div>
-              <div class="node cloud-node">Selective cloud</div>
-              <div class="signal good">Balanced trade-off</div>
+              <p>Agent actions produce evolving local context.</p>
             </div>
-            <div class="map-column cloud">
-              <span class="map-label">Cloud-only</span>
-              <div class="node cloud-node">Frontier model</div>
-              <div class="signal good">High utility</div>
-              <div class="signal risk">High exposure</div>
+
+            <div class="edge-agent-panel">
+              <span class="diagram-label">Edge agent</span>
+              <div class="agent-core edge-core">Local executor</div>
+              <div class="trajectory-row" aria-label="Agent trajectory">
+                <span>S1</span><span>S2</span><span>S3</span><span>S4</span>
+              </div>
+              <p>Plans, acts, observes, and keeps most context local.</p>
+            </div>
+
+            <div class="gate-panel">
+              <span class="diagram-label">Context gate</span>
+              <div class="gate-core"><i class="icon icon-shield" aria-hidden="true"></i></div>
+              <p>Decides when cloud help is worth the cost and exposure.</p>
+            </div>
+
+            <div class="cloud-panel">
+              <span class="diagram-label">Cloud model</span>
+              <div class="agent-core cloud-core">Selective assistance</div>
+              <div class="cloud-skills">
+                <span>Plan</span><span>Recover</span><span>Verify</span>
+              </div>
+              <p>Returns guidance instead of owning every step.</p>
+            </div>
+
+            <div class="flow-line local-flow">workspace context</div>
+            <div class="flow-line cloud-flow">selected context</div>
+            <div class="flow-line return-flow">hint / plan / recovery</div>
+
+            <div class="tradeoff-ribbon">
+              <span><b>Utility</b> task success</span>
+              <span><b>Cost</b> cloud usage</span>
+              <span><b>Privacy</b> leaked context</span>
             </div>
           </div>
         </div>
@@ -161,33 +184,67 @@
           <h2>Single-side baselines and four representative edge-cloud coordination patterns.</h2>
         </div>
         <div class="method-grid">
-          <article>
+          <article class="strategy-card">
             <span class="method-kicker edge-kicker"><i class="icon icon-device" aria-hidden="true"></i>Edge-only</span>
+            <div class="strategy-mini edge-only-mini" aria-hidden="true">
+              <span class="mini-node edge-mini-node">Edge</span>
+              <span class="mini-step">S1</span>
+              <span class="mini-step">S2</span>
+              <span class="mini-step">S3</span>
+            </div>
             <h3>Local execution</h3>
             <p>No cloud exposure, but capability is bounded by the edge model.</p>
           </article>
-          <article>
+          <article class="strategy-card">
             <span class="method-kicker cloud-kicker"><i class="icon icon-cloud" aria-hidden="true"></i>Cloud-only</span>
+            <div class="strategy-mini cloud-only-mini" aria-hidden="true">
+              <span class="mini-node cloud-mini-node">Cloud</span>
+              <span class="mini-step cloud-step">S1</span>
+              <span class="mini-step cloud-step">S2</span>
+              <span class="mini-step cloud-step">S3</span>
+            </div>
             <h3>Full cloud execution</h3>
             <p>Strong capability reference point with higher cloud cost and context exposure.</p>
           </article>
-          <article>
+          <article class="strategy-card">
             <span class="method-kicker hybrid-kicker"><i class="icon icon-route" aria-hidden="true"></i>Pipeline</span>
+            <div class="strategy-mini sketch-mini" aria-hidden="true">
+              <span class="mini-node cloud-mini-node">Sketch</span>
+              <span class="mini-arrow"></span>
+              <span class="mini-node edge-mini-node">Edge run</span>
+            </div>
             <h3>Sketch-Guided</h3>
             <p>The cloud provides upfront guidance, then the edge model performs the trajectory.</p>
           </article>
-          <article>
+          <article class="strategy-card">
             <span class="method-kicker hybrid-kicker"><i class="icon icon-switch" aria-hidden="true"></i>Pre-execution</span>
+            <div class="strategy-mini task-mini" aria-hidden="true">
+              <span class="mini-node router-mini-node">Router</span>
+              <span class="branch-line"></span>
+              <span class="mini-node edge-mini-node">Edge</span>
+              <span class="mini-node cloud-mini-node">Cloud</span>
+            </div>
             <h3>Task-Routing</h3>
             <p>A one-time router assigns the whole task to edge or cloud before execution.</p>
           </article>
-          <article>
+          <article class="strategy-card">
             <span class="method-kicker hybrid-kicker"><i class="icon icon-step" aria-hidden="true"></i>Runtime</span>
+            <div class="strategy-mini step-mini" aria-hidden="true">
+              <span class="mini-step">S1</span>
+              <span class="mini-step">S2</span>
+              <span class="mini-step cloud-step">Cloud</span>
+              <span class="mini-step">S4</span>
+            </div>
             <h3>Step-Routing</h3>
             <p>The edge model escalates uncertain intermediate steps to the cloud.</p>
           </article>
-          <article>
+          <article class="strategy-card">
             <span class="method-kicker hybrid-kicker"><i class="icon icon-help" aria-hidden="true"></i>Assistive</span>
+            <div class="strategy-mini assist-mini" aria-hidden="true">
+              <span class="mini-node edge-mini-node">Edge</span>
+              <span class="assist-loop">?</span>
+              <span class="mini-node cloud-mini-node">Hint</span>
+            </div>
             <h3>Adaptive Assist.</h3>
             <p>The edge agent requests cloud plans or hints when assistance is useful.</p>
           </article>
@@ -261,10 +318,10 @@
             </p>
           </div>
           <div class="plot-legend" aria-label="Plot legend">
-            <span><i class="dot edge-dot"></i> Edge-only</span>
-            <span><i class="dot hybrid-dot"></i> Edge-Cloud</span>
-            <span><i class="dot cloud-dot"></i> Cloud-only</span>
-            <span><i class="size-key"></i> Larger point = higher privacy</span>
+            <span><i class="shape-key hollow-key"></i> Edge-only reference</span>
+            <span><i class="shape-key star-key"></i> Cloud-only reference</span>
+            <span><i class="shape-key dot-key"></i> Edge-cloud strategy</span>
+            <span><i class="shape-key contour-key"></i> Same edge backbone</span>
           </div>
         </div>
         <div class="plot-layout">
@@ -272,7 +329,7 @@
             <div class="plot-caption">
               <span><i class="icon icon-target" aria-hidden="true"></i>Y: Completion Score</span>
               <span><i class="icon icon-coin" aria-hidden="true"></i>X: Cloud Cost</span>
-              <span><i class="icon icon-shield" aria-hidden="true"></i>Bubble: Privacy</span>
+              <span><i class="icon icon-shield" aria-hidden="true"></i>Marker number: Privacy</span>
             </div>
             <canvas id="tradeoff-canvas" width="960" height="560" aria-label="Cloud cost versus completion score plot"></canvas>
             <div id="plot-tooltip" role="status" aria-live="polite"></div>
