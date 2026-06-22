@@ -293,23 +293,20 @@
           <table>
             <thead>
               <tr>
-                <th>Rank</th>
+                <th>#</th>
                 <th>Method</th>
-                <th>Models</th>
-                <th>Completion</th>
+                <th>Completion Score</th>
                 <th>Pass@3</th>
-                <th>Cloud Cost</th>
                 <th>Privacy</th>
-                <th>Cloud Tok. R/C/O</th>
-                <th>Edge FLOPs</th>
+                <th>Cloud Cost</th>
               </tr>
             </thead>
             <tbody id="leaderboard-body"></tbody>
           </table>
         </div>
         <p class="leaderboard-note">
-          Cloud Tok. R/C/O reports raw input, cache-read input, and output tokens in millions. Privacy is computed
-          on the 100 privacy-annotated tasks, where higher is better.
+          Details under each method report edge/cloud models, Cloud Tok. R/C/O, and edge FLOPs. Privacy is computed
+          on the 100 privacy-annotated tasks; higher is better.
         </p>
       </section>
 

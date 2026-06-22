@@ -77,34 +77,27 @@ function renderLeaderboard() {
   const body = document.getElementById("leaderboard-body");
   state.filtered = getSortedResults();
   renderLeaderboardSummary(state.filtered);
-  const maxCost = Math.max(...state.results.map(item => item.cloudCost));
   body.innerHTML = state.filtered.map((item, index) => `
     <tr class="${index === 0 ? "top-row" : ""}">
       <td class="rank">#${index + 1}</td>
-      <td>
+      <td class="method-cell">
         <div class="method-name">
           <span class="dot" style="background:${groupColors[item.group]}"></span>
           <span>${item.method}</span>
           ${index === 0 ? '<span class="top-badge">Top</span>' : ""}
         </div>
-        <span class="pill">${item.group}</span>
+        <div class="model-line">${item.model}</div>
+        <div class="run-detail">Edge ${item.edgeModel} | Cloud ${item.cloudModel} | Tok ${item.cloudTokens || "-"} | FLOPs ${format.flops(item.edgeFlops)}</div>
       </td>
-      <td>
-        <span class="model-name">${item.model}</span>
-        <div class="muted">Edge: ${item.edgeModel} | Cloud: ${item.cloudModel}</div>
+      <td class="score-cell">
+        <div class="score-bar-wrap">
+          <div class="score-bar"><span style="width:${Math.max(0, Math.min(100, item.completion))}%"></span></div>
+          <strong>${format.percent(item.completion)}%</strong>
+        </div>
       </td>
-      <td class="metric-cell">
-        ${metricBar(item.completion, 100, "completion-bar", format.percent(item.completion), "%")}
-      </td>
-      <td>${format.percent(item.pass3)}%</td>
-      <td class="metric-cell">
-        ${metricBar(item.cloudCost, maxCost, "cost-bar", format.money(item.cloudCost), "")}
-      </td>
-      <td class="metric-cell">
-        ${metricBar(item.privacy, 100, "privacy-bar", format.percent(item.privacy), "%")}
-      </td>
-      <td>${item.cloudTokens || "-"}</td>
-      <td>${format.flops(item.edgeFlops)}</td>
+      <td class="compact-metric pass-metric">${format.percent(item.pass3)}%</td>
+      <td class="compact-metric privacy-metric">${format.percent(item.privacy)}%</td>
+      <td class="compact-metric cost-metric">${format.money(item.cloudCost)}</td>
     </tr>
   `).join("");
 }
