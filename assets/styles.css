@@ -190,7 +190,6 @@ h1 {
   font-size: clamp(16px, 1.25vw, 18px);
 }
 
-.hero-actions,
 .leaderboard-controls,
 .task-taxonomy,
 .plot-legend,
@@ -199,15 +198,10 @@ h1 {
   flex-wrap: wrap;
 }
 
-.hero-actions {
-  gap: 12px;
-}
-
 .hero-meta {
-  display: grid;
-  grid-template-columns: auto minmax(280px, 1fr) auto;
+  display: flex;
   align-items: center;
-  gap: 16px 24px;
+  justify-content: flex-end;
   padding-top: 16px;
   border-top: 1px solid rgba(217, 223, 216, 0.92);
 }
@@ -230,28 +224,6 @@ h1 {
   background: var(--ink);
   color: #fff;
   border-color: var(--ink);
-}
-
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 9px;
-  margin-top: 0;
-}
-
-.hero-proof span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 34px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.74);
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 720;
 }
 
 .hero-stats {
@@ -1551,8 +1523,7 @@ footer span:first-child {
   }
 
   .hero-meta {
-    grid-template-columns: 1fr;
-    align-items: start;
+    justify-content: flex-start;
   }
 
   .hero-stats {
