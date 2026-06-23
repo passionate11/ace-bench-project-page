@@ -156,9 +156,9 @@ main {
 }
 
 .hero-copy .eyebrow {
-  margin-bottom: 14px;
-  font-size: 16px;
-  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+  font-size: clamp(24px, 2.2vw, 32px);
+  letter-spacing: 0.11em;
 }
 
 .hero-copy {
@@ -166,10 +166,11 @@ main {
 }
 
 h1 {
-  max-width: 690px;
-  margin-bottom: 18px;
-  font-size: clamp(38px, 4.1vw, 54px);
-  line-height: 1.05;
+  max-width: 640px;
+  margin-bottom: 16px;
+  font-size: clamp(32px, 3.35vw, 44px);
+  font-weight: 760;
+  line-height: 1.08;
   letter-spacing: 0;
   overflow-wrap: normal;
 }
@@ -1631,7 +1632,7 @@ footer span:first-child {
   }
 
   h1 {
-    font-size: clamp(36px, 11.2vw, 50px);
+    font-size: clamp(28px, 9.2vw, 38px);
     max-width: 100%;
     overflow-wrap: anywhere;
   }
