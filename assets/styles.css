@@ -338,8 +338,7 @@ h1 {
 .axis-grid,
 .pipeline,
 .method-grid,
-.resource-grid,
-.leaderboard-summary {
+.resource-grid {
   display: grid;
   gap: 18px;
 }
@@ -365,7 +364,6 @@ h1 {
 .pipeline article,
 .method-grid article,
 .resource-grid article,
-.summary-card,
 .finding-panel,
 .table-shell,
 .plot-card {
@@ -873,7 +871,13 @@ h1 {
 }
 
 .leaderboard-heading {
+  max-width: none;
   margin-bottom: 14px;
+}
+
+.leaderboard-heading .section-intro {
+  max-width: none;
+  white-space: nowrap;
 }
 
 .leaderboard-toolbar {
@@ -1006,71 +1010,6 @@ select {
 
 .leaderboard-controls label:last-child select {
   min-width: 140px;
-}
-
-.leaderboard-summary {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0 0 18px;
-}
-
-.summary-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 118px;
-  padding: 18px 18px 16px;
-  border-color: rgba(217, 223, 216, 0.95);
-  background:
-    radial-gradient(circle at 100% 0%, rgba(46, 111, 199, 0.1), transparent 34%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 247, 243, 0.86));
-  box-shadow: 0 14px 30px rgba(36, 51, 45, 0.07);
-}
-
-.summary-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: linear-gradient(180deg, var(--cloud), var(--edge));
-  opacity: 0.72;
-}
-
-.summary-card::after {
-  content: "";
-  position: absolute;
-  right: -24px;
-  top: -26px;
-  width: 92px;
-  height: 92px;
-  border: 1px solid rgba(46, 111, 199, 0.16);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(46, 111, 199, 0.08), transparent 62%);
-}
-
-.summary-label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--cloud);
-  font-size: 11px;
-  font-weight: 780;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.summary-value {
-  display: block;
-  color: var(--ink);
-  font-size: 21px;
-  font-weight: 560;
-  letter-spacing: -0.01em;
-  line-height: 1.14;
-}
-
-.summary-meta {
-  display: block;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 13px;
 }
 
 .table-shell {
@@ -1617,8 +1556,7 @@ footer span:first-child {
   .axis-grid,
   .pipeline,
   .method-grid,
-  .resource-grid,
-  .leaderboard-summary {
+  .resource-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1708,9 +1646,12 @@ footer span:first-child {
   .axis-grid,
   .pipeline,
   .method-grid,
-  .resource-grid,
-  .leaderboard-summary {
+  .resource-grid {
     grid-template-columns: 1fr;
+  }
+
+  .leaderboard-heading .section-intro {
+    white-space: normal;
   }
 
   .leaderboard-tabs span {
