@@ -1316,7 +1316,7 @@ canvas {
 
 .citation-block pre {
   overflow-x: auto;
-  max-width: 980px;
+  width: 100%;
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 8px;
