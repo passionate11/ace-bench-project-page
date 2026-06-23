@@ -55,6 +55,7 @@ function bindControls() {
   document.getElementById("group-filter").addEventListener("change", renderLeaderboard);
   document.getElementById("sort-select").addEventListener("change", renderLeaderboard);
   const canvas = document.getElementById("tradeoff-canvas");
+  if (!canvas) return;
   canvas.addEventListener("mousemove", handlePlotHover);
   canvas.addEventListener("mouseleave", hideTooltip);
 }
@@ -140,6 +141,7 @@ function metricBar(value, max, className, label, suffix) {
 
 function renderTradeoff() {
   const canvas = document.getElementById("tradeoff-canvas");
+  if (!canvas) return;
   const rect = canvas.getBoundingClientRect();
   const ratio = window.devicePixelRatio || 1;
   canvas.width = Math.max(900, rect.width) * ratio;
@@ -427,7 +429,8 @@ function handlePlotHover(event) {
 }
 
 function hideTooltip() {
-  document.getElementById("plot-tooltip").style.display = "none";
+  const tooltip = document.getElementById("plot-tooltip");
+  if (tooltip) tooltip.style.display = "none";
 }
 
 init();
