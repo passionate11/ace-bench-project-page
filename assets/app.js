@@ -201,7 +201,7 @@ function drawBackboneContours(ctx, plot, xMin, xMax, yMin, yMax) {
   groups.forEach((group, index) => {
     const points = group.items.map(item => plotPosition(item, plot, xMin, xMax, yMin, yMax));
     if (!points.length) return;
-    const minX = Math.min(...points.map(point => point.x)) - 34;
+    const minX = Math.max(scaleX(0, plot, xMin, xMax) + 2, Math.min(...points.map(point => point.x)) - 34);
     const maxX = Math.max(...points.map(point => point.x)) + 34;
     const minY = Math.min(...points.map(point => point.y)) - 38;
     const maxY = Math.max(...points.map(point => point.y)) + 38;
@@ -349,9 +349,10 @@ function drawPointLabels(ctx, points, plot) {
 
 function drawPlotNotes(ctx, plot) {
   ctx.save();
+  const legendY = plot.y - 26;
+  drawInlineLegend(ctx, plot.x, legendY);
   ctx.fillStyle = "rgba(97, 112, 106, 0.9)";
   ctx.font = "13px ui-sans-serif, system-ui, sans-serif";
-  ctx.fillText("Number inside marker = privacy performance", plot.x, plot.y - 24);
   ctx.fillText("Higher utility", plot.x + plot.w - 88, plot.y - 24);
   ctx.strokeStyle = "rgba(46, 111, 199, 0.55)";
   ctx.lineWidth = 1.5;
@@ -359,6 +360,42 @@ function drawPlotNotes(ctx, plot) {
   ctx.moveTo(plot.x + plot.w - 112, plot.y - 28);
   ctx.lineTo(plot.x + plot.w - 128, plot.y - 28);
   ctx.stroke();
+  ctx.restore();
+}
+
+function drawInlineLegend(ctx, x, y) {
+  ctx.save();
+  ctx.font = "700 12px ui-sans-serif, system-ui, sans-serif";
+  ctx.textBaseline = "middle";
+
+  ctx.beginPath();
+  ctx.arc(x + 8, y, 7, 0, Math.PI * 2);
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = groupColors["Edge-only"];
+  ctx.stroke();
+  ctx.fillStyle = "rgba(97, 112, 106, 0.94)";
+  ctx.fillText("Edge-only", x + 22, y);
+
+  const hybridX = x + 112;
+  ctx.beginPath();
+  ctx.arc(hybridX + 8, y, 7, 0, Math.PI * 2);
+  ctx.fillStyle = groupColors["Edge-Cloud"];
+  ctx.fill();
+  ctx.strokeStyle = "#ffffff";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  ctx.fillStyle = "rgba(97, 112, 106, 0.94)";
+  ctx.fillText("Edge-cloud", hybridX + 22, y);
+
+  const cloudX = x + 232;
+  drawStar(ctx, cloudX + 8, y, 8, groupColors["Cloud-only"]);
+  ctx.fillStyle = "rgba(97, 112, 106, 0.94)";
+  ctx.fillText("Cloud-only", cloudX + 24, y);
+
+  ctx.font = "500 12px ui-sans-serif, system-ui, sans-serif";
+  ctx.fillText("Number = privacy", cloudX + 128, y);
   ctx.restore();
 }
 
