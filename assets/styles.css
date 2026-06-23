@@ -11,7 +11,7 @@
   --privacy: #b7791f;
   --risk: #b5473f;
   --completion: #9a271d;
-  --shell: 1040px;
+  --shell: 1100px;
   --shadow: 0 18px 42px rgba(36, 51, 45, 0.1);
   --shadow-soft: 0 10px 24px rgba(36, 51, 45, 0.06);
 }
@@ -134,7 +134,7 @@ main {
 }
 
 .hero-shell {
-  --shell: 1080px;
+  --shell: 1160px;
   display: grid;
   grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
   align-items: center;
@@ -970,7 +970,7 @@ h1 {
 }
 
 .leaderboard-shell {
-  --shell: 1040px;
+  --shell: 1100px;
 }
 
 .leaderboard-controls {
@@ -1201,7 +1201,7 @@ tbody tr:last-child td {
 }
 
 .tradeoff-shell {
-  --shell: 1040px;
+  --shell: 1100px;
 }
 
 .plot-legend {
