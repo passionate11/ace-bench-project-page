@@ -1230,14 +1230,14 @@ tbody tr:last-child td {
 
 .blog-masthead {
   max-width: 860px;
-  margin: 0 auto 38px;
-  text-align: center;
+  margin: 0 0 38px;
+  text-align: left;
 }
 
 .blog-masthead h2 {
   max-width: 780px;
   margin: 0;
-  margin-inline: auto;
+  margin-inline: 0;
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 20px);
   font-weight: 700;
@@ -1253,7 +1253,7 @@ tbody tr:last-child td {
 
 .blog-masthead > p:not(.eyebrow) {
   max-width: 720px;
-  margin: 10px auto 0;
+  margin: 10px 0 0;
   color: var(--muted);
   font-size: 14px;
 }
@@ -1261,7 +1261,7 @@ tbody tr:last-child td {
 .blog-meta-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
   margin-top: 22px;
 }
