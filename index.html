@@ -20,8 +20,8 @@
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#evaluation">Evaluation</a>
-          <a href="#benchmark">Benchmark</a>
           <a href="#methods">Methods</a>
+          <a href="#benchmark">Benchmark</a>
           <a href="#leaderboard">Leaderboard</a>
           <a href="#tradeoff">Trade-off</a>
           <a href="#resources">Resources</a>
@@ -115,45 +115,6 @@
         </div>
       </section>
 
-      <section id="benchmark" class="section-block">
-        <div class="content-shell">
-          <div class="section-heading">
-            <p class="eyebrow">Benchmark Design</p>
-            <h2>Executable agent tasks with trajectory-level cloud exposure auditing.</h2>
-          </div>
-          <div class="pipeline">
-            <article>
-              <span><i class="icon icon-folder" aria-hidden="true"></i>01</span>
-              <h3>Workspace Tasks</h3>
-              <p>User instructions, files, databases, logs, APIs, application states, and task-specific verifiers.</p>
-            </article>
-            <article>
-              <span><i class="icon icon-loop" aria-hidden="true"></i>02</span>
-              <h3>Agent Harness</h3>
-              <p>Agents execute multi-step trajectories while the harness records actions, observations, tool outputs, and model calls.</p>
-            </article>
-            <article>
-              <span><i class="icon icon-cloud" aria-hidden="true"></i>03</span>
-              <h3>Cloud-Visible Context</h3>
-              <p>Each cloud invocation is audited for transmitted context, token usage, and privacy-sensitive units.</p>
-            </article>
-            <article>
-              <span><i class="icon icon-chart" aria-hidden="true"></i>04</span>
-              <h3>Three-Axis Profile</h3>
-              <p>Completion, Pass@3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
-            </article>
-          </div>
-          <div class="task-taxonomy" aria-label="Task coverage">
-            <span>Information Retrieval</span>
-            <span>Content Generation</span>
-            <span>Data Analysis</span>
-            <span>Office Productivity</span>
-            <span>Development</span>
-            <span>Workflow Automation</span>
-          </div>
-        </div>
-      </section>
-
       <section id="methods" class="section-block methods-block">
         <div class="content-shell">
           <div class="section-heading">
@@ -225,6 +186,45 @@
             <h3>Adaptive Assist.</h3>
             <p>The edge agent requests cloud plans or hints when assistance is useful.</p>
           </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="benchmark" class="section-block">
+        <div class="content-shell">
+          <div class="section-heading">
+            <p class="eyebrow">Benchmark Design</p>
+            <h2>Executable agent tasks with trajectory-level cloud exposure auditing.</h2>
+          </div>
+          <div class="pipeline">
+            <article>
+              <span><i class="icon icon-folder" aria-hidden="true"></i>01</span>
+              <h3>Workspace Tasks</h3>
+              <p>User instructions, files, databases, logs, APIs, application states, and task-specific verifiers.</p>
+            </article>
+            <article>
+              <span><i class="icon icon-loop" aria-hidden="true"></i>02</span>
+              <h3>Agent Harness</h3>
+              <p>Agents execute multi-step trajectories while the harness records actions, observations, tool outputs, and model calls.</p>
+            </article>
+            <article>
+              <span><i class="icon icon-cloud" aria-hidden="true"></i>03</span>
+              <h3>Cloud-Visible Context</h3>
+              <p>Each cloud invocation is audited for transmitted context, token usage, and privacy-sensitive units.</p>
+            </article>
+            <article>
+              <span><i class="icon icon-chart" aria-hidden="true"></i>04</span>
+              <h3>Three-Axis Profile</h3>
+              <p>Completion, Pass@3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
+            </article>
+          </div>
+          <div class="task-taxonomy" aria-label="Task coverage">
+            <span>Information Retrieval</span>
+            <span>Content Generation</span>
+            <span>Data Analysis</span>
+            <span>Office Productivity</span>
+            <span>Development</span>
+            <span>Workflow Automation</span>
           </div>
         </div>
       </section>
