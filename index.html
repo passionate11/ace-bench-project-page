@@ -73,7 +73,7 @@
 
       <section id="leaderboard" class="section-block leaderboard-block">
         <div class="content-shell leaderboard-shell">
-          <div class="section-heading compact leaderboard-heading">
+          <div class="section-heading leaderboard-heading">
             <div>
               <p class="eyebrow">Leaderboard</p>
               <h2>Ranked by Completion Score, with privacy and cost kept visible.</h2>
@@ -82,26 +82,26 @@
                 not hide their deployment trade-offs.
               </p>
             </div>
-            <div class="leaderboard-controls" aria-label="Leaderboard filters">
-              <label>
-                Strategy
-                <select id="group-filter">
-                  <option value="all">All strategies</option>
-                  <option value="Edge-only">Edge-only</option>
-                  <option value="Cloud-only">Cloud-only</option>
-                  <option value="Edge-Cloud">Edge-Cloud</option>
-                </select>
-              </label>
-              <label>
-                Sort
-                <select id="sort-select">
-                  <option value="completion">Completion Score</option>
-                  <option value="privacy">Privacy</option>
-                  <option value="cloudCostAsc">Cloud Cost</option>
-                  <option value="pass3">Pass@3</option>
-                </select>
-              </label>
-            </div>
+          </div>
+          <div class="leaderboard-controls" aria-label="Leaderboard filters">
+            <label>
+              <span>Strategy</span>
+              <select id="group-filter">
+                <option value="all">All strategies</option>
+                <option value="Edge-only">Edge-only</option>
+                <option value="Cloud-only">Cloud-only</option>
+                <option value="Edge-Cloud">Edge-Cloud</option>
+              </select>
+            </label>
+            <label>
+              <span>Sort</span>
+              <select id="sort-select">
+                <option value="completion">Completion Score</option>
+                <option value="privacy">Privacy</option>
+                <option value="cloudCostAsc">Cloud Cost</option>
+                <option value="pass3">Pass@3</option>
+              </select>
+            </label>
           </div>
           <div class="leaderboard-tabs" aria-label="Leaderboard interpretation">
             <span class="active"><i class="icon icon-target" aria-hidden="true"></i><strong>Primary</strong> Completion Score</span>

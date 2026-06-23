@@ -893,7 +893,7 @@ h1 {
 }
 
 .leaderboard-heading {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .leaderboard-tabs {
@@ -932,29 +932,53 @@ h1 {
 }
 
 .leaderboard-controls {
-  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  margin: 0 0 18px;
 }
 
 .leaderboard-controls label {
-  display: grid;
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
+  min-height: 36px;
+  padding: 0 7px 0 10px;
+  border: 1px solid rgba(217, 223, 216, 0.96);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 720;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.02em;
+}
+
+.leaderboard-controls label span {
+  color: var(--cloud);
+  font-size: 10px;
+  font-weight: 820;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 select {
-  min-width: 176px;
-  height: 42px;
-  padding: 0 34px 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
+  min-width: 112px;
+  height: 32px;
+  padding: 0 24px 0 7px;
+  border: 0;
+  border-left: 1px solid rgba(217, 223, 216, 0.96);
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.leaderboard-controls label:last-child select {
+  min-width: 140px;
 }
 
 .leaderboard-summary {
