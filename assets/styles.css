@@ -1217,10 +1217,11 @@ tbody tr:last-child td {
 }
 
 .leaderboard-note {
-  max-width: 920px;
+  max-width: none;
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 13px;
+  white-space: nowrap;
 }
 
 .blog-shell {
@@ -1659,6 +1660,10 @@ footer span:first-child {
 
   .leaderboard-tabs span {
     flex-basis: 100%;
+  }
+
+  .leaderboard-note {
+    white-space: normal;
   }
 
   .blog-masthead {
