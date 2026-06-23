@@ -157,14 +157,15 @@ function renderTradeoff() {
     w: width - margin.left - margin.right,
     h: height - margin.top - margin.bottom
   };
+  const xMin = -1.2;
   const xMax = 35;
   const yMin = 38;
   const yMax = 75;
 
-  drawPlotFrame(ctx, plot, xMax, yMin, yMax);
-  drawBackboneContours(ctx, plot, xMax, yMin, yMax);
+  drawPlotFrame(ctx, plot, xMin, xMax, yMin, yMax);
+  drawBackboneContours(ctx, plot, xMin, xMax, yMin, yMax);
   state.points = state.results.map(item => {
-    const x = plot.x + (item.cloudCost / xMax) * plot.w;
+    const x = scaleX(item.cloudCost, plot, xMin, xMax);
     const y = plot.y + (1 - ((item.completion - yMin) / (yMax - yMin))) * plot.h;
     const radius = item.group === "Cloud-only" ? 22 : 20;
     drawPoint(ctx, x, y, radius, item);
@@ -174,14 +175,18 @@ function renderTradeoff() {
   drawPlotNotes(ctx, plot);
 }
 
-function plotPosition(item, plot, xMax, yMin, yMax) {
+function scaleX(value, plot, xMin, xMax) {
+  return plot.x + ((value - xMin) / (xMax - xMin)) * plot.w;
+}
+
+function plotPosition(item, plot, xMin, xMax, yMin, yMax) {
   return {
-    x: plot.x + (item.cloudCost / xMax) * plot.w,
+    x: scaleX(item.cloudCost, plot, xMin, xMax),
     y: plot.y + (1 - ((item.completion - yMin) / (yMax - yMin))) * plot.h
   };
 }
 
-function drawBackboneContours(ctx, plot, xMax, yMin, yMax) {
+function drawBackboneContours(ctx, plot, xMin, xMax, yMin, yMax) {
   const groups = [
     {
       label: "Qwen3.5-9B",
@@ -194,7 +199,7 @@ function drawBackboneContours(ctx, plot, xMax, yMin, yMax) {
   ];
   ctx.save();
   groups.forEach((group, index) => {
-    const points = group.items.map(item => plotPosition(item, plot, xMax, yMin, yMax));
+    const points = group.items.map(item => plotPosition(item, plot, xMin, xMax, yMin, yMax));
     if (!points.length) return;
     const minX = Math.min(...points.map(point => point.x)) - 34;
     const maxX = Math.max(...points.map(point => point.x)) + 34;
@@ -227,22 +232,22 @@ function roundedRect(ctx, x, y, width, height, radius) {
   ctx.quadraticCurveTo(x, y, x + r, y);
 }
 
-function drawPlotFrame(ctx, plot, xMax, yMin, yMax) {
+function drawPlotFrame(ctx, plot, xMin, xMax, yMin, yMax) {
   ctx.save();
   ctx.strokeStyle = "#e2e7e1";
   ctx.fillStyle = "#61706a";
   ctx.lineWidth = 1;
   ctx.font = "13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-  for (let i = 0; i <= 6; i += 1) {
-    const x = plot.x + (i / 6) * plot.w;
-    const value = Math.round((xMax / 6) * i);
+  const xTicks = [0, 6, 12, 18, 23, 29, 35];
+  xTicks.forEach(value => {
+    const x = scaleX(value, plot, xMin, xMax);
     ctx.beginPath();
     ctx.moveTo(x, plot.y);
     ctx.lineTo(x, plot.y + plot.h);
     ctx.stroke();
     ctx.fillText(`$${value}`, x - 12, plot.y + plot.h + 32);
-  }
+  });
 
   for (let i = 0; i <= 5; i += 1) {
     const y = plot.y + (i / 5) * plot.h;
