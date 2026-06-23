@@ -372,10 +372,67 @@ h1 {
   background: var(--surface);
 }
 
+.axis-grid,
+.pipeline,
+.method-grid {
+  overflow: hidden;
+  gap: 0;
+  border-top: 1px solid rgba(217, 223, 216, 0.96);
+  border-bottom: 1px solid rgba(217, 223, 216, 0.96);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(247, 248, 245, 0.18));
+}
+
+.resource-grid,
+.finding-panel {
+  overflow: hidden;
+  gap: 0;
+  border-top: 1px solid rgba(217, 223, 216, 0.96);
+  border-bottom: 1px solid rgba(217, 223, 216, 0.96);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(247, 248, 245, 0.14));
+}
+
+.axis-card,
+.pipeline article,
+.method-grid article,
+.resource-grid article,
+.finding-panel {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .axis-card {
-  min-height: 220px;
-  padding: 22px;
-  box-shadow: var(--shadow-soft);
+  min-height: 186px;
+  padding: 24px 28px 22px;
+}
+
+.axis-card + .axis-card,
+.pipeline article + article {
+  border-left: 1px solid rgba(217, 223, 216, 0.92);
+}
+
+.method-grid article {
+  border-right: 1px solid rgba(217, 223, 216, 0.92);
+  border-bottom: 1px solid rgba(217, 223, 216, 0.92);
+}
+
+.resource-grid article {
+  border-right: 1px solid rgba(217, 223, 216, 0.92);
+}
+
+.method-grid article:nth-child(3n) {
+  border-right: 0;
+}
+
+.method-grid article:nth-last-child(-n + 3) {
+  border-bottom: 0;
+}
+
+.resource-grid article:nth-child(4n) {
+  border-right: 0;
 }
 
 .axis-card span,
@@ -393,7 +450,7 @@ h1 {
 }
 
 .axis-card h3 {
-  margin: 38px 0 10px;
+  margin: 28px 0 10px;
   font-size: 19px;
   font-weight: 400;
   line-height: 1.18;
@@ -700,12 +757,12 @@ h1 {
 .pipeline article,
 .method-grid article,
 .resource-grid article {
-  min-height: 190px;
-  padding: 22px;
+  min-height: 188px;
+  padding: 24px 28px;
 }
 
 .pipeline article {
-  min-height: 210px;
+  min-height: 194px;
 }
 
 .pipeline span,
@@ -727,7 +784,7 @@ h1 {
 .pipeline h3,
 .method-grid h3,
 .resource-grid h3 {
-  margin: 32px 0 10px;
+  margin: 28px 0 10px;
   font-size: 18px;
   font-weight: 400;
 }
@@ -747,12 +804,12 @@ h1 {
   align-items: center;
   min-height: 34px;
   padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.76);
+  border: 0;
+  border-radius: 4px;
+  background: rgba(46, 111, 199, 0.07);
   color: var(--muted);
   font-size: 13px;
-  font-weight: 780;
+  font-weight: 520;
 }
 
 .strategy-card {
@@ -760,17 +817,20 @@ h1 {
   flex-direction: column;
 }
 
+.strategy-card .method-kicker {
+  align-self: flex-start;
+}
+
 .strategy-mini {
   position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 58px;
-  margin: 18px 0 4px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: #fbfcfa;
+  min-height: 48px;
+  margin: 16px 0 4px;
+  padding: 12px 0 0;
+  border-top: 1px dashed rgba(168, 180, 171, 0.8);
+  background: transparent;
 }
 
 .mini-node,
@@ -1500,18 +1560,27 @@ canvas {
 .finding-panel {
   display: grid;
   grid-template-columns: 0.7fr repeat(3, 1fr);
-  gap: 18px;
-  padding: 22px;
+  padding: 0;
+  border-top: 1px solid rgba(217, 223, 216, 0.96);
+  border-bottom: 1px solid rgba(217, 223, 216, 0.96);
 }
 
 .finding-panel h3 {
-  margin-bottom: 18px;
+  margin: 0;
+  padding: 24px 26px;
+  border-right: 1px solid rgba(217, 223, 216, 0.92);
   font-size: 21px;
   font-weight: 400;
 }
 
 .finding-panel p {
+  padding: 24px 26px;
+  border-right: 1px solid rgba(217, 223, 216, 0.92);
   margin-bottom: 0;
+}
+
+.finding-panel p:last-child {
+  border-right: 0;
 }
 
 .citation-block pre {
@@ -1560,6 +1629,42 @@ footer span:first-child {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .axis-card + .axis-card,
+  .pipeline article + article {
+    border-left: 0;
+  }
+
+  .axis-card,
+  .pipeline article,
+  .method-grid article,
+  .resource-grid article {
+    border-right: 1px solid rgba(217, 223, 216, 0.92);
+    border-bottom: 1px solid rgba(217, 223, 216, 0.92);
+  }
+
+  .axis-card:nth-child(2n),
+  .pipeline article:nth-child(2n),
+  .method-grid article:nth-child(2n),
+  .resource-grid article:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .axis-card:last-child,
+  .pipeline article:nth-last-child(-n + 2),
+  .method-grid article:nth-last-child(-n + 2),
+  .resource-grid article:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .method-grid article:nth-child(3n),
+  .resource-grid article:nth-child(4n) {
+    border-right: 1px solid rgba(217, 223, 216, 0.92);
+  }
+
+  .method-grid article:nth-last-child(-n + 3) {
+    border-bottom: 1px solid rgba(217, 223, 216, 0.92);
+  }
+
   .leaderboard-toolbar {
     grid-template-columns: 1fr;
   }
@@ -1590,6 +1695,16 @@ footer span:first-child {
 
   .finding-panel {
     grid-template-columns: 1fr;
+  }
+
+  .finding-panel h3,
+  .finding-panel p {
+    border-right: 0;
+    border-bottom: 1px solid rgba(217, 223, 216, 0.92);
+  }
+
+  .finding-panel p:last-child {
+    border-bottom: 0;
   }
 }
 
@@ -1648,6 +1763,21 @@ footer span:first-child {
   .method-grid,
   .resource-grid {
     grid-template-columns: 1fr;
+  }
+
+  .axis-card,
+  .pipeline article,
+  .method-grid article,
+  .resource-grid article {
+    border-right: 0;
+    border-bottom: 1px solid rgba(217, 223, 216, 0.92);
+  }
+
+  .axis-card:last-child,
+  .pipeline article:last-child,
+  .method-grid article:last-child,
+  .resource-grid article:last-child {
+    border-bottom: 0;
   }
 
   .leaderboard-heading .section-intro {
