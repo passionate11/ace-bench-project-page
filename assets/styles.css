@@ -198,14 +198,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-.hero-meta {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-top: 16px;
-  border-top: 1px solid rgba(217, 223, 216, 0.92);
-}
-
 .action {
   display: inline-flex;
   align-items: center;
@@ -230,9 +222,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 10px;
-  justify-content: flex-end;
-  max-width: none;
-  margin-top: 0;
+  justify-content: flex-start;
+  max-width: 640px;
+  margin-top: 24px;
 }
 
 .hero-stats span {
@@ -1520,14 +1512,6 @@ footer span:first-child {
 
   .hero-copy {
     max-width: 760px;
-  }
-
-  .hero-meta {
-    justify-content: flex-start;
-  }
-
-  .hero-stats {
-    justify-content: flex-start;
   }
 
   .axis-grid,
