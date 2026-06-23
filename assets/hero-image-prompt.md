@@ -2,25 +2,22 @@
 
 Use case: infographic-diagram
 Asset type: 16:9 website hero image for an academic benchmark project page
-Primary request: Create a clean, professional hero illustration for "Agentic Cloud-Edge Collaboration Benchmark", explaining how a local edge agent selectively collaborates with a cloud model while protecting private workspace context.
 
-Scene/backdrop: Minimal research-lab / system-diagram setting on an off-white background. The visual should feel like a polished AI research project page figure, not a poster, not a marketing banner, and not a cartoon scene.
+Primary request: Create a clean overview figure for ACE-BENCH, a benchmark about agentic cloud-edge collaboration. The image should explain that a local edge agent works over private workspace context and selectively asks a cloud model for help through a privacy/context gate.
 
-Subject: Show three clear zones from left to right:
-1. EDGE / LOCAL WORKSPACE: a laptop or desktop workspace with simple file, database, terminal, and application icons.
-2. CONTEXT GATE: a central privacy filter / gate that selects, redacts, compresses, and forwards only necessary context.
-3. CLOUD ASSIST: a cloud model or cloud server panel that returns planning, reasoning, recovery, or verification assistance back to the edge agent.
+Composition: A calm left-to-right system diagram with three large zones:
+1. Local Workspace / Edge Agent on the left: laptop, files, database, terminal, and app-state icons.
+2. Context Gate in the center: a filter/shield/gate that redacts and compresses context before sending it out.
+3. Cloud Assistant on the right: a cloud model/server panel returning a plan, hint, verification, or recovery signal.
 
-Composition/framing: Wide 16:9 composition, balanced and airy. Use one main left-to-right flow arrow from local workspace to context gate to cloud assist, plus one subtle return arrow from cloud assist back to the edge agent. Place the three zones in large readable blocks with generous spacing. Leave quiet negative space; avoid dense micro-panels.
+Visual story: Most execution stays local. Only selected context goes through the gate to the cloud. A return arrow brings cloud assistance back to the edge agent. At the bottom, show three small metric badges: Utility, Cost, Privacy.
 
-Style/medium: Modern vector-like technical illustration with subtle depth, crisp edges, clean iconography, and gentle shadows. No characters, no mascots, no photorealistic people. Use a calm academic style similar to a paper overview figure or benchmark project page visual.
+Style: Polished vector-like academic overview figure, similar to a paper project-page diagram. Clean iconography, subtle depth, gentle shadows, crisp lines, lots of negative space. It should look professional and explanatory, not decorative.
 
-Color palette: Off-white / very light gray background; deep green for edge/local; clear blue for cloud; amber for context gate/privacy; dark neutral text. Keep the palette restrained and avoid neon, dark sci-fi, or heavy gradients.
+Color palette: Off-white background, deep green for edge/local, amber for context/privacy gate, clear blue for cloud, dark neutral text. Keep colors restrained and consistent with an academic website.
 
-Text (verbatim, keep large and horizontal): "EDGE", "CONTEXT GATE", "CLOUD", "Local workspace", "Selective cloud assistance", "Utility", "Cost", "Privacy".
+Text: Use only these large labels, and make them horizontal and legible: "EDGE", "CONTEXT GATE", "CLOUD", "Utility", "Cost", "Privacy". Avoid any other tiny or random text.
 
-Details to include: At the bottom, add three small but readable metric chips/gauges labeled Utility, Cost, Privacy. The idea should be obvious at a glance: most execution stays local; only filtered context goes to the cloud; the benchmark evaluates utility, cloud cost, and privacy.
+Constraints: 16:9 landscape, uncluttered, readable at website hero size, no logo, no watermark, no fake UI text, no dense micro-panels, no people, no robots, no mascots, no cartoon style, no cyberpunk city, no dark background, no poster-like title banner.
 
-Constraints: All text must be real, large, horizontal, and legible. Use at most 8 visible text labels. Keep the image uncluttered. No logos, no watermark, no fake random text, no tiny UI text. Do not include animals, mascots, claws, crabs, people, robots, cyberpunk cityscapes, or decorative 3D clutter.
-
-Negative prompt: messy infographic, dense labels, tiny unreadable text, cartoon mascot, character, photorealistic person, dark background, cyberpunk, bokeh, poster layout, overdecorated UI, random symbols, watermark, logo.
+Negative prompt: messy infographic, too many labels, tiny unreadable text, decorative sci-fi, neon, dark background, cartoon mascot, human figure, robot character, stock photo, watermark, logo, random symbols, fake text.

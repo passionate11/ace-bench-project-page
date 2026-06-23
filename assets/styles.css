@@ -150,11 +150,17 @@ main {
   text-transform: uppercase;
 }
 
+.hero-copy .eyebrow {
+  margin-bottom: 14px;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+}
+
 h1 {
   max-width: 760px;
   margin-bottom: 22px;
-  font-size: clamp(42px, 5.4vw, 72px);
-  line-height: 1.02;
+  font-size: clamp(40px, 4.7vw, 62px);
+  line-height: 1.04;
   letter-spacing: 0;
 }
 
