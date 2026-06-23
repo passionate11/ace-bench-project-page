@@ -125,7 +125,7 @@ main {
 }
 
 .hero-section {
-  padding: clamp(72px, 8vw, 108px) 0 clamp(54px, 6vw, 82px);
+  padding: clamp(58px, 7vw, 92px) 0 clamp(44px, 5vw, 64px);
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(251, 252, 250, 0.82), rgba(247, 248, 245, 0.98)),
@@ -134,7 +134,7 @@ main {
 }
 
 .hero-shell {
-  --shell: 1280px;
+  --shell: 1220px;
   display: grid;
   grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
   align-items: center;
@@ -225,6 +225,42 @@ h1 {
   font-weight: 720;
 }
 
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  max-width: 650px;
+  margin-top: 20px;
+}
+
+.hero-stats span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  min-height: 28px;
+  padding-right: 10px;
+  border-right: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 780;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-stats span:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.hero-stats strong {
+  color: var(--ink);
+  font-size: clamp(21px, 1.8vw, 25px);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
 .hero-visual {
   display: flex;
   align-items: center;
@@ -248,44 +284,6 @@ h1 {
   aspect-ratio: 16 / 9;
   object-fit: contain;
   border-radius: 7px;
-}
-
-.metric-strip {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--line);
-  background: #fbfcfa;
-}
-
-.metrics-shell {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: var(--line);
-}
-
-.metric-strip article {
-  padding: 20px 24px;
-  background: var(--surface);
-}
-
-.metric-strip strong {
-  display: block;
-  color: var(--ink);
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 1;
-}
-
-.metric-strip span {
-  display: block;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 760;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .section-block {
@@ -1577,12 +1575,8 @@ footer span:first-child {
     font-size: 22px;
   }
 
-  .metrics-shell {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .metric-strip article {
-    padding: 24px 20px;
+  .hero-stats {
+    max-width: none;
   }
 
   .section-block {
