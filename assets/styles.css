@@ -335,26 +335,26 @@ h1 {
 }
 
 .section-heading h2 {
-  max-width: 850px;
+  max-width: 780px;
   margin-bottom: 0;
   color: var(--ink);
-  font-size: clamp(22px, 2vw, 28px);
-  font-weight: 740;
-  line-height: 1.16;
+  font-size: clamp(17px, 1.35vw, 20px);
+  font-weight: 700;
+  line-height: 1.24;
   letter-spacing: 0;
 }
 
 .section-heading .eyebrow {
-  margin-bottom: 10px;
-  font-size: 16px;
-  letter-spacing: 0.13em;
+  margin-bottom: 8px;
+  font-size: clamp(22px, 2vw, 28px);
+  letter-spacing: 0.11em;
 }
 
 .section-intro {
   max-width: 760px;
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .section-side-note {
