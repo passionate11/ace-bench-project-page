@@ -304,7 +304,7 @@ h1 {
   margin-bottom: 0;
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 20px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.24;
   letter-spacing: 0;
 }
@@ -397,6 +397,7 @@ h1 {
 .axis-card h3 {
   margin: 38px 0 10px;
   font-size: 19px;
+  font-weight: 400;
   line-height: 1.18;
 }
 
@@ -730,6 +731,7 @@ h1 {
 .resource-grid h3 {
   margin: 32px 0 10px;
   font-size: 18px;
+  font-weight: 400;
 }
 
 .method-grid p,
@@ -1204,7 +1206,7 @@ tbody tr:last-child td {
   margin-inline: 0;
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 20px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.24;
   letter-spacing: 0;
 }
@@ -1269,6 +1271,7 @@ tbody tr:last-child td {
   max-width: 660px;
   margin: 0 0 14px;
   font-size: 25px;
+  font-weight: 400;
   line-height: 1.18;
 }
 
@@ -1309,6 +1312,7 @@ tbody tr:last-child td {
   margin-bottom: 10px;
   color: var(--ink);
   font-size: 19px;
+  font-weight: 400;
   line-height: 1.22;
 }
 
@@ -1343,7 +1347,7 @@ tbody tr:last-child td {
   margin: 0;
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 20px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.24;
 }
 
@@ -1469,6 +1473,7 @@ canvas {
 .finding-panel h3 {
   margin-bottom: 18px;
   font-size: 21px;
+  font-weight: 400;
 }
 
 .finding-panel p {
