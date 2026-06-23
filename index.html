@@ -33,7 +33,10 @@
           <div class="hero-main">
             <div class="hero-copy">
               <p class="eyebrow">ACE-BENCH</p>
-              <h1>Agentic Cloud-Edge Collaboration Benchmark</h1>
+              <h1>
+                <span class="title-line">Agentic Cloud-<br class="title-mobile-break">Edge</span>
+                <span class="title-line">Collaboration<br class="title-mobile-break"> Benchmark</span>
+              </h1>
               <p class="hero-summary">
                 A multi-dimensional benchmark for studying how workspace-grounded LLM agents trade task utility,
                 cloud-side resource usage, and privacy exposure under edge-cloud collaboration.
@@ -83,30 +86,32 @@
               </p>
             </div>
           </div>
-          <div class="leaderboard-controls" aria-label="Leaderboard filters">
-            <label>
-              <span>Strategy</span>
-              <select id="group-filter">
-                <option value="all">All strategies</option>
-                <option value="Edge-only">Edge-only</option>
-                <option value="Cloud-only">Cloud-only</option>
-                <option value="Edge-Cloud">Edge-Cloud</option>
-              </select>
-            </label>
-            <label>
-              <span>Sort</span>
-              <select id="sort-select">
-                <option value="completion">Completion Score</option>
-                <option value="privacy">Privacy</option>
-                <option value="cloudCostAsc">Cloud Cost</option>
-                <option value="pass3">Pass@3</option>
-              </select>
-            </label>
-          </div>
-          <div class="leaderboard-tabs" aria-label="Leaderboard interpretation">
-            <span class="active"><i class="icon icon-target" aria-hidden="true"></i><strong>Primary</strong> Completion Score</span>
-            <span><i class="icon icon-shield" aria-hidden="true"></i><strong>Visible</strong> Privacy</span>
-            <span><i class="icon icon-coin" aria-hidden="true"></i><strong>Visible</strong> Cloud Cost</span>
+          <div class="leaderboard-toolbar">
+            <div class="leaderboard-controls" aria-label="Leaderboard filters">
+              <label>
+                <span>Strategy</span>
+                <select id="group-filter">
+                  <option value="all">All strategies</option>
+                  <option value="Edge-only">Edge-only</option>
+                  <option value="Cloud-only">Cloud-only</option>
+                  <option value="Edge-Cloud">Edge-Cloud</option>
+                </select>
+              </label>
+              <label>
+                <span>Sort</span>
+                <select id="sort-select">
+                  <option value="completion">Completion Score</option>
+                  <option value="privacy">Privacy</option>
+                  <option value="cloudCostAsc">Cloud Cost</option>
+                  <option value="pass3">Pass@3</option>
+                </select>
+              </label>
+            </div>
+            <div class="leaderboard-tabs" aria-label="Leaderboard interpretation">
+              <span class="active"><i class="icon icon-target" aria-hidden="true"></i><strong>Primary</strong> Completion Score</span>
+              <span><i class="icon icon-shield" aria-hidden="true"></i><strong>Visible</strong> Privacy</span>
+              <span><i class="icon icon-coin" aria-hidden="true"></i><strong>Visible</strong> Cloud Cost</span>
+            </div>
           </div>
           <div id="leaderboard-summary" class="leaderboard-summary" aria-label="Leaderboard summary"></div>
           <div class="table-shell">
