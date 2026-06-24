@@ -138,8 +138,8 @@ main {
 
 .nav-links a[aria-current="page"] {
   color: #fff;
-  background: #9a271d;
-  box-shadow: 0 8px 18px rgba(154, 39, 29, 0.16);
+  background: var(--cloud);
+  box-shadow: 0 8px 18px rgba(46, 111, 199, 0.16);
 }
 
 .nav-links a[aria-current="page"]:hover {
