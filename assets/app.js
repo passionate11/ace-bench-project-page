@@ -4,6 +4,8 @@ const state = {
   points: []
 };
 
+const dataVersion = "20260624-leaderboard-data";
+
 const groupColors = {
   "Edge-only": "#16855f",
   "Edge-Cloud": "#b7791f",
@@ -11,10 +13,10 @@ const groupColors = {
 };
 
 const methodColors = {
-  "Sketch-Guided": "#2f9a70",
-  "Task-Routing": "#b7791f",
-  "Step-Routing": "#8a6bd1",
-  "Adaptive Assist.": "#d36b4c",
+  "Sketch-Guided Edge Execution.": "#2f9a70",
+  "Task-Level Routing": "#b7791f",
+  "Step-Level Routing": "#8a6bd1",
+  "Adaptive Cloud Assistance.": "#d36b4c",
   "Edge-only": "#16855f",
   "Cloud-only": "#2e6fc7"
 };
@@ -22,10 +24,10 @@ const methodColors = {
 const shortNames = {
   "Edge-only": "Edge",
   "Cloud-only": "Cloud",
-  "Sketch-Guided": "Sketch",
-  "Task-Routing": "Task route",
-  "Step-Routing": "Step route",
-  "Adaptive Assist.": "Assist"
+  "Sketch-Guided Edge Execution.": "Sketch",
+  "Task-Level Routing": "Task route",
+  "Step-Level Routing": "Step route",
+  "Adaptive Cloud Assistance.": "Assist"
 };
 
 const format = {
@@ -35,7 +37,7 @@ const format = {
 };
 
 async function init() {
-  const response = await fetch("data/results.json");
+  const response = await fetch(`data/results.json?v=${dataVersion}`, { cache: "no-store" });
   const data = await response.json();
   state.results = data.results;
   hydrateStats(data.metrics);

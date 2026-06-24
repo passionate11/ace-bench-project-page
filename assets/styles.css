@@ -1122,17 +1122,17 @@ th:nth-child(1) {
 }
 
 th:nth-child(2) {
-  width: 340px;
+  width: 430px;
 }
 
 th:nth-child(3) {
-  width: 300px;
+  width: 260px;
 }
 
 th:nth-child(4),
 th:nth-child(5),
 th:nth-child(6) {
-  width: 120px;
+  width: 96px;
 }
 
 th,
@@ -1214,9 +1214,7 @@ tbody tr:last-child td {
   margin-top: 4px;
   color: #8a9892;
   font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .dot {
@@ -1239,7 +1237,7 @@ tbody tr:last-child td {
 }
 
 .score-bar {
-  width: 190px;
+  width: 150px;
   height: 5px;
   background: #e5e0d4;
   border-radius: 999px;

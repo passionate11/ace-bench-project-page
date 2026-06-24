@@ -9,7 +9,7 @@
     >
     <title>Agentic Edge-Cloud Collaboration Benchmark</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317211d'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='white'%3EACE%3C/text%3E%3C/svg%3E">
-    <link rel="stylesheet" href="assets/styles.css?v=20260624-sort-tabs">
+    <link rel="stylesheet" href="assets/styles.css?v=20260624-leaderboard-data">
   </head>
   <body>
     <header class="site-header">
@@ -95,13 +95,13 @@
             </div>
             <div class="leaderboard-tabs" aria-label="Leaderboard sort shortcuts">
               <button class="active" type="button" data-sort="completion" aria-pressed="true">
-                <i class="icon icon-target" aria-hidden="true"></i><strong>Primary</strong> Completion Score ↑
+                <i class="icon icon-target" aria-hidden="true"></i>Completion Score ↑
               </button>
               <button type="button" data-sort="privacy" aria-pressed="false">
-                <i class="icon icon-shield" aria-hidden="true"></i><strong>Visible</strong> Privacy ↑
+                <i class="icon icon-shield" aria-hidden="true"></i>Privacy ↑
               </button>
               <button type="button" data-sort="cloudCostAsc" aria-pressed="false">
-                <i class="icon icon-coin" aria-hidden="true"></i><strong>Visible</strong> Cloud Cost ↓
+                <i class="icon icon-coin" aria-hidden="true"></i>Cloud Cost ↓
               </button>
             </div>
           </div>
@@ -175,7 +175,7 @@
               <article class="axis-card utility">
                 <span><i class="icon icon-target" aria-hidden="true"></i>Utility</span>
                 <h3>Can the agent finish the task?</h3>
-                <p>Completion Score and Pass@3 evaluate whether multi-step workspace goals are actually solved.</p>
+                <p>Completion Score and Pass^3 evaluate whether multi-step workspace goals are actually solved.</p>
               </article>
               <article class="axis-card cost">
                 <span><i class="icon icon-coin" aria-hidden="true"></i>Resource Usage</span>
@@ -228,7 +228,7 @@
                   <span class="mini-arrow"></span>
                   <span class="mini-node edge-mini-node">Edge run</span>
                 </div>
-                <h3>Sketch-Guided</h3>
+                <h3>Sketch-Guided Edge Execution.</h3>
                 <p>The cloud provides upfront guidance, then the edge model performs the trajectory.</p>
               </article>
               <article class="strategy-card">
@@ -239,7 +239,7 @@
                   <span class="mini-node edge-mini-node">Edge</span>
                   <span class="mini-node cloud-mini-node">Cloud</span>
                 </div>
-                <h3>Task-Routing</h3>
+                <h3>Task-Level Routing</h3>
                 <p>A one-time router assigns the whole task to edge or cloud before execution.</p>
               </article>
               <article class="strategy-card">
@@ -250,7 +250,7 @@
                   <span class="mini-step cloud-step">Cloud</span>
                   <span class="mini-step">S4</span>
                 </div>
-                <h3>Step-Routing</h3>
+                <h3>Step-Level Routing</h3>
                 <p>The edge model escalates uncertain intermediate steps to the cloud.</p>
               </article>
               <article class="strategy-card">
@@ -260,7 +260,7 @@
                   <span class="assist-loop">?</span>
                   <span class="mini-node cloud-mini-node">Hint</span>
                 </div>
-                <h3>Adaptive Assist.</h3>
+                <h3>Adaptive Cloud Assistance.</h3>
                 <p>The edge agent requests cloud plans or hints when assistance is useful.</p>
               </article>
             </div>
@@ -293,7 +293,7 @@
               <article>
                 <span><i class="icon icon-chart" aria-hidden="true"></i>04</span>
                 <h3>Three-Axis Profile</h3>
-                <p>Completion, Pass@3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
+                <p>Completion, Pass^3, cloud cost, edge FLOPs, and risk-weighted privacy performance are reported together.</p>
               </article>
             </div>
             <div class="task-taxonomy" aria-label="Task coverage">
@@ -375,7 +375,7 @@
             <article>
               <span><i class="icon icon-clipboard" aria-hidden="true"></i>03</span>
               <h3>Reporting Protocol</h3>
-              <p>Report Completion, Pass@3, cloud tokens, cloud cost, edge FLOPs, and privacy performance together.</p>
+              <p>Report Completion, Pass^3, cloud tokens, cloud cost, edge FLOPs, and privacy performance together.</p>
             </article>
             <article>
               <span><i class="icon icon-check" aria-hidden="true"></i>04</span>
@@ -409,6 +409,6 @@
       </div>
     </footer>
 
-    <script src="assets/app.js?v=20260624-sort-tabs"></script>
+    <script src="assets/app.js?v=20260624-leaderboard-data"></script>
   </body>
 </html>

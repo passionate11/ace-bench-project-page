@@ -51,20 +51,6 @@
     },
     {
       "method": "Cloud-only",
-      "model": "DeepSeek-v4-Flash",
-      "group": "Cloud-only",
-      "edgeModel": "None",
-      "cloudModel": "DeepSeek-v4-Flash",
-      "completion": 69.47,
-      "pass3": 51.56,
-      "cloudTokens": "7.73 / 61.21 / 1.53",
-      "cloudCost": 1.68,
-      "edgeFlops": null,
-      "privacy": 12.68,
-      "year": 2026
-    },
-    {
-      "method": "Cloud-only",
       "model": "DeepSeek-v4-Pro",
       "group": "Cloud-only",
       "edgeModel": "None",
@@ -92,7 +78,7 @@
       "year": 2026
     },
     {
-      "method": "Sketch-Guided",
+      "method": "Sketch-Guided Edge Execution.",
       "model": "Qwen3.5-9B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-9B",
@@ -106,7 +92,7 @@
       "year": 2024
     },
     {
-      "method": "Task-Routing",
+      "method": "Task-Level Routing",
       "model": "Qwen3.5-9B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-9B",
@@ -120,7 +106,7 @@
       "year": 2024
     },
     {
-      "method": "Step-Routing",
+      "method": "Step-Level Routing",
       "model": "Qwen3.5-9B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-9B",
@@ -134,7 +120,7 @@
       "year": 2026
     },
     {
-      "method": "Adaptive Assist.",
+      "method": "Adaptive Cloud Assistance.",
       "model": "Qwen3.5-9B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-9B",
@@ -148,7 +134,7 @@
       "year": 2026
     },
     {
-      "method": "Sketch-Guided",
+      "method": "Sketch-Guided Edge Execution.",
       "model": "Qwen3.5-27B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-27B",
@@ -162,7 +148,7 @@
       "year": 2024
     },
     {
-      "method": "Task-Routing",
+      "method": "Task-Level Routing",
       "model": "Qwen3.5-27B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-27B",
@@ -176,7 +162,7 @@
       "year": 2024
     },
     {
-      "method": "Step-Routing",
+      "method": "Step-Level Routing",
       "model": "Qwen3.5-27B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-27B",
@@ -190,7 +176,7 @@
       "year": 2026
     },
     {
-      "method": "Adaptive Assist.",
+      "method": "Adaptive Cloud Assistance.",
       "model": "Qwen3.5-27B + GPT-5.4",
       "group": "Edge-Cloud",
       "edgeModel": "Qwen3.5-27B",
