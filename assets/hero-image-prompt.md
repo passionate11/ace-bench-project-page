@@ -3,7 +3,7 @@
 Use case: infographic-diagram
 Asset type: 16:9 website hero image for an academic benchmark project page
 
-Primary request: Create a clean overview figure for ACE-BENCH, a benchmark about agentic cloud-edge collaboration. The image should explain that a local edge agent works over private workspace context and selectively asks a cloud model for help through a privacy/context gate.
+Primary request: Create a clean overview figure for ACE-BENCH, a benchmark about agentic edge-cloud collaboration. The image should explain that a local edge agent works over private workspace context and selectively asks a cloud model for help through a privacy/context gate.
 
 Composition: A calm left-to-right system diagram with three large zones:
 1. Local Workspace / Edge Agent on the left: laptop, files, database, terminal, and app-state icons.

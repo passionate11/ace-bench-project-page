@@ -1,4 +1,4 @@
-# Agentic Cloud-Edge Collaboration Benchmark
+# Agentic Edge-Cloud Collaboration Benchmark
 
 Static project page and leaderboard for ACE-BENCH.
 
