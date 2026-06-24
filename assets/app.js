@@ -40,6 +40,7 @@ async function init() {
   state.results = data.results;
   hydrateStats(data.metrics);
   bindControls();
+  bindActiveNavigation();
   renderLeaderboard();
   renderTradeoff();
   window.addEventListener("resize", () => renderTradeoff());
@@ -58,6 +59,44 @@ function bindControls() {
   if (!canvas) return;
   canvas.addEventListener("mousemove", handlePlotHover);
   canvas.addEventListener("mouseleave", hideTooltip);
+}
+
+function bindActiveNavigation() {
+  const navLinks = [...document.querySelectorAll(".nav-links a[href^='#']")];
+  const sections = navLinks
+    .map(link => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  if (!navLinks.length || !sections.length) return;
+
+  const setActive = id => {
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute("href") === `#${id}`;
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const updateActive = () => {
+    const probeY = window.scrollY + Math.min(window.innerHeight * 0.42, 360);
+    const current = sections.reduce((active, section) => {
+      return section.offsetTop <= probeY ? section : active;
+    }, sections[0]);
+    setActive(current.id);
+  };
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      const target = link.getAttribute("href").slice(1);
+      if (target) setActive(target);
+    });
+  });
+
+  updateActive();
+  window.addEventListener("scroll", updateActive, { passive: true });
+  window.addEventListener("resize", updateActive);
 }
 
 function getSortedResults() {
