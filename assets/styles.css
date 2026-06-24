@@ -1280,7 +1280,8 @@ tbody tr:last-child td {
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 13px;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .blog-shell {
