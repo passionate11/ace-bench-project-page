@@ -1004,7 +1004,8 @@ h1 {
   background: rgba(217, 223, 216, 0.82);
 }
 
-.leaderboard-tabs span {
+.leaderboard-tabs button {
+  appearance: none;
   display: inline-flex;
   align-items: center;
   flex: 1 1 220px;
@@ -1016,8 +1017,17 @@ h1 {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 247, 0.9));
   color: var(--muted);
+  cursor: pointer;
+  font: inherit;
   font-size: 13px;
+  text-align: left;
   backdrop-filter: none;
+}
+
+.leaderboard-tabs button:hover {
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(245, 249, 247, 0.95));
 }
 
 .leaderboard-tabs strong {
@@ -1806,7 +1816,7 @@ footer span:first-child {
     white-space: normal;
   }
 
-  .leaderboard-tabs span {
+  .leaderboard-tabs button {
     flex-basis: 100%;
   }
 

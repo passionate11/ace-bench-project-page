@@ -54,11 +54,30 @@ function hydrateStats(metrics) {
 
 function bindControls() {
   document.getElementById("group-filter").addEventListener("change", renderLeaderboard);
-  document.getElementById("sort-select").addEventListener("change", renderLeaderboard);
+  document.getElementById("sort-select").addEventListener("change", () => {
+    syncSortTabs();
+    renderLeaderboard();
+  });
+  document.querySelectorAll(".leaderboard-tabs button[data-sort]").forEach(button => {
+    button.addEventListener("click", () => {
+      document.getElementById("sort-select").value = button.dataset.sort;
+      syncSortTabs();
+      renderLeaderboard();
+    });
+  });
   const canvas = document.getElementById("tradeoff-canvas");
   if (!canvas) return;
   canvas.addEventListener("mousemove", handlePlotHover);
   canvas.addEventListener("mouseleave", hideTooltip);
+}
+
+function syncSortTabs() {
+  const sort = document.getElementById("sort-select").value;
+  document.querySelectorAll(".leaderboard-tabs button[data-sort]").forEach(button => {
+    const isActive = button.dataset.sort === sort;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
 }
 
 function bindActiveNavigation() {

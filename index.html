@@ -9,7 +9,7 @@
     >
     <title>Agentic Edge-Cloud Collaboration Benchmark</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317211d'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='white'%3EACE%3C/text%3E%3C/svg%3E">
-    <link rel="stylesheet" href="assets/styles.css?v=20260624-nav-blue">
+    <link rel="stylesheet" href="assets/styles.css?v=20260624-sort-tabs">
   </head>
   <body>
     <header class="site-header">
@@ -86,17 +86,23 @@
               <label>
                 <span>Sort</span>
                 <select id="sort-select">
-                  <option value="completion">Completion Score</option>
-                  <option value="privacy">Privacy</option>
-                  <option value="cloudCostAsc">Cloud Cost</option>
-                  <option value="pass3">Pass@3</option>
+                  <option value="completion">Completion Score ↑</option>
+                  <option value="pass3">Pass^3 ↑</option>
+                  <option value="privacy">Privacy ↑</option>
+                  <option value="cloudCostAsc">Cloud Cost ↓</option>
                 </select>
               </label>
             </div>
-            <div class="leaderboard-tabs" aria-label="Leaderboard interpretation">
-              <span class="active"><i class="icon icon-target" aria-hidden="true"></i><strong>Primary</strong> Completion Score</span>
-              <span><i class="icon icon-shield" aria-hidden="true"></i><strong>Visible</strong> Privacy</span>
-              <span><i class="icon icon-coin" aria-hidden="true"></i><strong>Visible</strong> Cloud Cost</span>
+            <div class="leaderboard-tabs" aria-label="Leaderboard sort shortcuts">
+              <button class="active" type="button" data-sort="completion" aria-pressed="true">
+                <i class="icon icon-target" aria-hidden="true"></i><strong>Primary</strong> Completion Score ↑
+              </button>
+              <button type="button" data-sort="privacy" aria-pressed="false">
+                <i class="icon icon-shield" aria-hidden="true"></i><strong>Visible</strong> Privacy ↑
+              </button>
+              <button type="button" data-sort="cloudCostAsc" aria-pressed="false">
+                <i class="icon icon-coin" aria-hidden="true"></i><strong>Visible</strong> Cloud Cost ↓
+              </button>
             </div>
           </div>
           <div class="table-shell">
@@ -105,10 +111,10 @@
                 <tr>
                   <th>#</th>
                   <th>Method</th>
-                  <th>Completion Score</th>
-                  <th>Pass@3</th>
-                  <th>Privacy</th>
-                  <th>Cloud Cost</th>
+                  <th>Completion Score ↑</th>
+                  <th>Pass^3 ↑</th>
+                  <th>Privacy ↑</th>
+                  <th>Cloud Cost ↓</th>
                 </tr>
               </thead>
               <tbody id="leaderboard-body"></tbody>
@@ -403,6 +409,6 @@
       </div>
     </footer>
 
-    <script src="assets/app.js?v=20260624-nav-active"></script>
+    <script src="assets/app.js?v=20260624-sort-tabs"></script>
   </body>
 </html>
