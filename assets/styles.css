@@ -1100,10 +1100,6 @@ select {
   color-scheme: light;
 }
 
-.leaderboard-controls label:last-child select {
-  min-width: 140px;
-}
-
 .table-shell {
   overflow-x: auto;
   box-shadow: var(--shadow-soft);

@@ -1,7 +1,8 @@
 const state = {
   results: [],
   filtered: [],
-  points: []
+  points: [],
+  sort: "completion"
 };
 
 const dataVersion = "20260624-leaderboard-data";
@@ -56,13 +57,9 @@ function hydrateStats(metrics) {
 
 function bindControls() {
   document.getElementById("group-filter").addEventListener("change", renderLeaderboard);
-  document.getElementById("sort-select").addEventListener("change", () => {
-    syncSortTabs();
-    renderLeaderboard();
-  });
   document.querySelectorAll(".leaderboard-tabs button[data-sort]").forEach(button => {
     button.addEventListener("click", () => {
-      document.getElementById("sort-select").value = button.dataset.sort;
+      state.sort = button.dataset.sort;
       syncSortTabs();
       renderLeaderboard();
     });
@@ -74,9 +71,8 @@ function bindControls() {
 }
 
 function syncSortTabs() {
-  const sort = document.getElementById("sort-select").value;
   document.querySelectorAll(".leaderboard-tabs button[data-sort]").forEach(button => {
-    const isActive = button.dataset.sort === sort;
+    const isActive = button.dataset.sort === state.sort;
     button.classList.toggle("active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
@@ -122,7 +118,7 @@ function bindActiveNavigation() {
 
 function getSortedResults() {
   const group = document.getElementById("group-filter").value;
-  const sort = document.getElementById("sort-select").value;
+  const sort = state.sort;
   const rows = state.results.filter(item => group === "all" || item.group === group);
   const sorted = [...rows];
   sorted.sort((a, b) => {
