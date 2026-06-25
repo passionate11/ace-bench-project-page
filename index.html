@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,9 +25,19 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d9488'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='25' font-weight='700' fill='white'%3EAce%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles.css?v=20260624-r15">
-    <script>document.documentElement.classList.add('js-reveal');</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css?v=20260625-i18n">
+    <script>
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('acebench-lang'); } catch (e) {}
+        var lang = saved || ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
+        var root = document.documentElement;
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+        root.classList.add('js-reveal');
+      })();
+    </script>
   </head>
   <body>
     <!-- Inline SVG icon sprite -->
@@ -49,6 +59,7 @@
         <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
         <symbol id="ic-tag" viewBox="0 0 24 24"><path d="M3 11.5V5a2 2 0 0 1 2-2h6.5L21 12.5 12.5 21 3 11.5z"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor" stroke="none"/></symbol>
         <symbol id="ic-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
+        <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></symbol>
       </defs>
     </svg>
 
@@ -59,14 +70,17 @@
           <span class="brand-text">ACE-<strong>Bench</strong></span>
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#leaderboard">Leaderboard</a>
-          <a href="#problem">Problem</a>
-          <a href="#benchmark">Benchmark</a>
-          <a href="#strategies">Strategies</a>
-          <a href="#findings">Findings</a>
+          <a href="#leaderboard" data-i18n="nav.leaderboard">Leaderboard</a>
+          <a href="#problem" data-i18n="nav.problem">Problem</a>
+          <a href="#benchmark" data-i18n="nav.benchmark">Benchmark</a>
+          <a href="#strategies" data-i18n="nav.strategies">Strategies</a>
+          <a href="#findings" data-i18n="nav.findings">Findings</a>
         </nav>
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-label="切换语言 / Switch language">
+          <svg class="ic" aria-hidden="true"><use href="#ic-globe"/></svg><span id="lang-toggle-label">中文</span>
+        </button>
         <a class="nav-cta" href="https://github.com/OpenBMB/AceBench" target="_blank" rel="noopener">
-          <svg class="ic" aria-hidden="true"><use href="#ic-code"/></svg>Code
+          <svg class="ic" aria-hidden="true"><use href="#ic-code"/></svg><span data-i18n="nav.code">Code</span>
         </a>
       </div>
     </header>
@@ -75,8 +89,8 @@
       <!-- ============================ HERO ============================ -->
       <section class="hero">
         <div class="hero-shell">
-          <p class="hero-venue">Benchmark &amp; Analysis · 2026</p>
-          <h1 class="hero-title">
+          <p class="hero-venue" data-i18n="hero.venue">Benchmark &amp; Analysis · 2026</p>
+          <h1 class="hero-title" data-i18n="hero.title">
             Empowering Edge Agents: A Systematic Analysis of<br>
             <span class="title-accent">Edge-Cloud Collaboration</span> in LLM Agent Execution
           </h1>
@@ -93,28 +107,28 @@
             <li>Maosong Sun<sup>2</sup></li>
           </ol>
           <ul class="affil-list" aria-label="Affiliations">
-            <li><sup>1</sup> Northeastern University, Shenyang</li>
-            <li><sup>2</sup> Tsinghua University, Beijing</li>
-            <li><sup>3</sup> China Mobile Online Services</li>
+            <li data-i18n="hero.affil1"><sup>1</sup> Northeastern University, Shenyang</li>
+            <li data-i18n="hero.affil2"><sup>2</sup> Tsinghua University, Beijing</li>
+            <li data-i18n="hero.affil3"><sup>3</sup> China Mobile Online Services</li>
           </ul>
-          <p class="corr-note"><span>&#42;</span> Corresponding authors</p>
+          <p class="corr-note" data-i18n="hero.corr"><span>&#42;</span> Corresponding authors</p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://github.com/OpenBMB/AceBench" target="_blank" rel="noopener">
-              <svg class="ic" aria-hidden="true"><use href="#ic-code"/></svg>Code &amp; Data
+              <svg class="ic" aria-hidden="true"><use href="#ic-code"/></svg><span data-i18n="hero.btnCode">Code &amp; Data</span>
             </a>
             <a class="btn" href="paper.pdf" target="_blank" rel="noopener">
-              <svg class="ic" aria-hidden="true"><use href="#ic-doc"/></svg>Paper (PDF)
+              <svg class="ic" aria-hidden="true"><use href="#ic-doc"/></svg><span data-i18n="hero.btnPaper">Paper (PDF)</span>
             </a>
             <a class="btn" href="#leaderboard">
-              <svg class="ic" aria-hidden="true"><use href="#ic-chart"/></svg>Leaderboard
+              <svg class="ic" aria-hidden="true"><use href="#ic-chart"/></svg><span data-i18n="hero.btnLeaderboard">Leaderboard</span>
             </a>
             <a class="btn" href="#citation">
-              <svg class="ic" aria-hidden="true"><use href="#ic-tag"/></svg>BibTeX
+              <svg class="ic" aria-hidden="true"><use href="#ic-tag"/></svg><span data-i18n="hero.btnBibtex">BibTeX</span>
             </a>
           </div>
 
-          <p class="hero-thesis">
+          <p class="hero-thesis" data-i18n="hero.thesis">
             LLM agents now act inside private local workspaces — files, databases, terminals, and app state.
             Running everything on-device protects that data but caps capability; sending everything to the cloud
             is capable but leaks context. <strong>The real question is how edge and cloud should collaborate</strong> —
@@ -125,7 +139,7 @@
 
         <figure class="hero-figure">
           <img src="assets/figures/fig1-tradeoff.png" width="1100" height="704" decoding="async" fetchpriority="high" alt="Trade-off between resource usage and privacy leakage for edge-only, edge-cloud, and cloud-only agent execution.">
-          <figcaption>
+          <figcaption data-i18n="hero.caption">
             <strong>The central tension.</strong> Edge-only execution keeps data local but hits a capability bottleneck;
             cloud-only execution succeeds but exposes accumulated local context. Edge-cloud collaboration aims for the
             sweet spot — selectively using the cloud to stay capable <em>and</em> private.
@@ -137,33 +151,33 @@
       <section class="tldr" aria-label="Key takeaways">
         <div class="content-shell">
           <div class="section-head bare-head">
-            <span class="kicker">Takeaways</span>
-            <h2 class="sr-only">Key takeaways</h2>
+            <span class="kicker" data-i18n="takeaways.kicker">Takeaways</span>
+            <h2 class="sr-only" data-i18n="takeaways.h2">Key takeaways</h2>
           </div>
           <div class="tldr-grid">
             <article class="tldr-card">
               <span class="tldr-num">01</span>
-              <h3>No single side wins</h3>
-              <p>Cloud-only agents are capable but leak heavily (privacy&nbsp;&asymp;&nbsp;22%). Edge-only agents are
+              <h3 data-i18n="takeaways.c1h">No single side wins</h3>
+              <p data-i18n="takeaways.c1p">Cloud-only agents are capable but leak heavily (privacy&nbsp;&asymp;&nbsp;22%). Edge-only agents are
               perfectly private but stall on hard, long-horizon workspace tasks.</p>
             </article>
             <article class="tldr-card">
               <span class="tldr-num">02</span>
-              <h3>Collaboration helps — if organized well</h3>
-              <p>Edge-cloud strategies strike a better balance — it depends on <strong>when</strong> the cloud is
+              <h3 data-i18n="takeaways.c2h">Collaboration helps — if organized well</h3>
+              <p data-i18n="takeaways.c2p">Edge-cloud strategies strike a better balance — it depends on <strong>when</strong> the cloud is
               called and <strong>what context</strong> is sent. The best setup nears cloud utility at
               ~<strong>1/10 the cost</strong>, far more private.</p>
             </article>
             <article class="tldr-card">
               <span class="tldr-num">03</span>
-              <h3>Edge capability reshapes the recipe</h3>
-              <p>Stronger on-device models need the cloud less. The best pattern shifts from step-level fallback toward
+              <h3 data-i18n="takeaways.c3h">Edge capability reshapes the recipe</h3>
+              <p data-i18n="takeaways.c3p">Stronger on-device models need the cloud less. The best pattern shifts from step-level fallback toward
               task routing &amp; planning — at a fraction of the cost (<strong>$3 vs $35</strong>).</p>
             </article>
             <article class="tldr-card">
               <span class="tldr-num">04</span>
-              <h3>Selective &ne; safe</h3>
-              <p>Even sparing cloud use can still expose sensitive local context. Future agents must optimize
+              <h3 data-i18n="takeaways.c4h">Selective &ne; safe</h3>
+              <p data-i18n="takeaways.c4p">Even sparing cloud use can still expose sensitive local context. Future agents must optimize
               model-use <strong>and</strong> context-sharing decisions jointly.</p>
             </article>
           </div>
@@ -174,29 +188,29 @@
       <section id="leaderboard" class="section section-soft">
         <div class="content-shell">
           <div class="section-head bare-head">
-            <span class="kicker">Leaderboard</span>
-            <h2 class="sr-only">Leaderboard</h2>
+            <span class="kicker" data-i18n="lb.kicker">Leaderboard</span>
+            <h2 class="sr-only" data-i18n="lb.kicker">Leaderboard</h2>
           </div>
 
           <div class="leaderboard-toolbar">
             <label class="lb-filter">
-              <span>Strategy family</span>
+              <span data-i18n="lb.filterLabel">Strategy family</span>
               <select id="group-filter">
-                <option value="all">All strategies</option>
-                <option value="Edge-only">Edge-only</option>
-                <option value="Cloud-only">Cloud-only</option>
-                <option value="Edge-Cloud">Edge-Cloud</option>
+                <option value="all" data-i18n="lb.optAll">All strategies</option>
+                <option value="Edge-only" data-i18n="lb.optEdge">Edge-only</option>
+                <option value="Cloud-only" data-i18n="lb.optCloud">Cloud-only</option>
+                <option value="Edge-Cloud" data-i18n="lb.optEdgeCloud">Edge-Cloud</option>
               </select>
             </label>
             <div class="leaderboard-tabs" aria-label="Sort by axis">
               <button class="active" type="button" data-sort="completion" aria-pressed="true">
-                <svg class="ic" aria-hidden="true"><use href="#ic-target"/></svg>Completion ↑
+                <svg class="ic" aria-hidden="true"><use href="#ic-target"/></svg><span data-i18n="lb.sortCompletion">Completion ↑</span>
               </button>
               <button type="button" data-sort="privacy" aria-pressed="false">
-                <svg class="ic" aria-hidden="true"><use href="#ic-shield"/></svg>Privacy ↑
+                <svg class="ic" aria-hidden="true"><use href="#ic-shield"/></svg><span data-i18n="lb.sortPrivacy">Privacy ↑</span>
               </button>
               <button type="button" data-sort="cloudCostAsc" aria-pressed="false">
-                <svg class="ic" aria-hidden="true"><use href="#ic-coin"/></svg>Cloud cost ↓
+                <svg class="ic" aria-hidden="true"><use href="#ic-coin"/></svg><span data-i18n="lb.sortCost">Cloud cost ↓</span>
               </button>
             </div>
           </div>
@@ -206,11 +220,11 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Method</th>
-                  <th>Completion ↑</th>
-                  <th>Pass<sup>3</sup> ↑</th>
-                  <th>Privacy ↑</th>
-                  <th>Cloud Cost ↓</th>
+                  <th data-i18n="lb.thMethod">Method</th>
+                  <th data-i18n="lb.thCompletion">Completion ↑</th>
+                  <th><span data-i18n="lb.thPass">Pass</span><sup>3</sup> ↑</th>
+                  <th data-i18n="lb.thPrivacy">Privacy ↑</th>
+                  <th data-i18n="lb.thCost">Cloud Cost ↓</th>
                 </tr>
               </thead>
               <tbody id="leaderboard-body"></tbody>
@@ -219,7 +233,7 @@
           <noscript>
             <p class="leaderboard-note">The interactive leaderboard needs JavaScript. With it disabled, see the paper's Table 1 for the full numbers and the trade-off figure in the Findings section.</p>
           </noscript>
-          <p class="leaderboard-note">
+          <p class="leaderboard-note" data-i18n="lb.note">
             Each method lists its edge / cloud models, cloud tokens (raw&nbsp;/&nbsp;cache-read&nbsp;/&nbsp;output, millions),
             and edge FLOPs (PetaFLOPs). Privacy is computed on the 100 privacy-annotated tasks; higher is better on every
             arrow shown.
@@ -231,9 +245,9 @@
       <section id="problem" class="section">
         <div class="content-shell">
           <div class="section-head">
-            <span class="kicker">Problem</span>
-            <h2>Cloud calls in multi-step agents quietly leak the workspace.</h2>
-            <p class="section-lede">
+            <span class="kicker" data-i18n="problem.kicker">Problem</span>
+            <h2 data-i18n="problem.h2">Cloud calls in multi-step agents quietly leak the workspace.</h2>
+            <p class="section-lede" data-i18n="problem.lede">
               Today's strongest agents lean on cloud-hosted frontier models. But an agent interacting with a local
               workspace accumulates context — file contents, tool outputs, evolving application state — and every
               cloud invocation can ship a slice of it off-device. That makes cloud execution a real privacy channel,
@@ -243,25 +257,25 @@
 
           <div class="problem-grid">
             <article class="problem-card edge">
-              <span class="tier-label"><svg class="ic" aria-hidden="true"><use href="#ic-device"/></svg>Edge-only</span>
-              <h3>Private, but capped</h3>
-              <p>All steps run on a small local model. Nothing leaves the device — but capability-intensive,
+              <span class="tier-label"><svg class="ic" aria-hidden="true"><use href="#ic-device"/></svg><span data-i18n="problem.c1tag">Edge-only</span></span>
+              <h3 data-i18n="problem.c1h">Private, but capped</h3>
+              <p data-i18n="problem.c1p">All steps run on a small local model. Nothing leaves the device — but capability-intensive,
               long-horizon tasks expose a hard bottleneck.</p>
-              <div class="stat-row"><span class="stat-pill good">100% privacy</span><span class="stat-pill warn">low utility</span></div>
+              <div class="stat-row"><span class="stat-pill good" data-i18n="problem.c1pillA">100% privacy</span><span class="stat-pill warn" data-i18n="problem.c1pillB">low utility</span></div>
             </article>
             <article class="problem-card cloud">
-              <span class="tier-label"><svg class="ic" aria-hidden="true"><use href="#ic-cloud"/></svg>Cloud-only</span>
-              <h3>Capable, but exposed</h3>
-              <p>A frontier model drives every step. Utility is high, yet accumulated local context is repeatedly
+              <span class="tier-label"><svg class="ic" aria-hidden="true"><use href="#ic-cloud"/></svg><span data-i18n="problem.c2tag">Cloud-only</span></span>
+              <h3 data-i18n="problem.c2h">Capable, but exposed</h3>
+              <p data-i18n="problem.c2p">A frontier model drives every step. Utility is high, yet accumulated local context is repeatedly
               transmitted — the highest privacy exposure and cost.</p>
-              <div class="stat-row"><span class="stat-pill good">highest utility</span><span class="stat-pill bad">22% privacy</span></div>
+              <div class="stat-row"><span class="stat-pill good" data-i18n="problem.c2pillA">highest utility</span><span class="stat-pill bad" data-i18n="problem.c2pillB">22% privacy</span></div>
             </article>
             <article class="problem-card gap">
-              <span class="tier-label"><svg class="ic" aria-hidden="true"><use href="#ic-chart"/></svg>What was missing</span>
-              <h3>Benchmarks studied the wrong setting</h3>
-              <p>Prior work evaluated edge-cloud collaboration on <em>static</em>, non-agentic tasks — math, QA,
+              <span class="tier-label"><svg class="ic" aria-hidden="true"><use href="#ic-chart"/></svg><span data-i18n="problem.c3tag">What was missing</span></span>
+              <h3 data-i18n="problem.c3h">Benchmarks studied the wrong setting</h3>
+              <p data-i18n="problem.c3p">Prior work evaluated edge-cloud collaboration on <em>static</em>, non-agentic tasks — math, QA,
               dialogue — and missed how cloud calls along a trajectory expose evolving local context.</p>
-              <div class="stat-row"><span class="stat-pill neutral">trajectory-level audit needed</span></div>
+              <div class="stat-row"><span class="stat-pill neutral" data-i18n="problem.c3pill">trajectory-level audit needed</span></div>
             </article>
           </div>
         </div>
@@ -271,9 +285,9 @@
       <section id="benchmark" class="section section-soft">
         <div class="content-shell">
           <div class="section-head">
-            <span class="kicker">Benchmark</span>
-            <h2>ACE-BENCH: agentic edge-cloud collaboration, measured on three axes.</h2>
-            <p class="section-lede">
+            <span class="kicker" data-i18n="bench.kicker">Benchmark</span>
+            <h2 data-i18n="bench.h2">ACE-BENCH: agentic edge-cloud collaboration, measured on three axes.</h2>
+            <p class="section-lede" data-i18n="bench.lede">
               <strong>A</strong>gentic <strong>C</strong>loud-<strong>E</strong>dge Collaboration Benchmark.
               128 executable, real-world digital tasks grounded in live workspaces, with task-specific verifiers.
               100 of them carry fine-grained privacy annotations, so every cloud invocation can be audited for the
@@ -282,15 +296,15 @@
           </div>
 
           <div class="metric-band" aria-label="Benchmark at a glance">
-            <div class="metric"><strong id="task-count">128</strong><span>executable tasks</span></div>
-            <div class="metric"><strong id="privacy-task-count">100</strong><span>privacy-annotated</span></div>
-            <div class="metric"><strong id="strategy-count">6</strong><span>execution strategies</span></div>
-            <div class="metric"><strong>3</strong><span>evaluation axes</span></div>
+            <div class="metric"><strong id="task-count">128</strong><span data-i18n="bench.m1">executable tasks</span></div>
+            <div class="metric"><strong id="privacy-task-count">100</strong><span data-i18n="bench.m2">privacy-annotated</span></div>
+            <div class="metric"><strong id="strategy-count">6</strong><span data-i18n="bench.m3">execution strategies</span></div>
+            <div class="metric"><strong>3</strong><span data-i18n="bench.m4">evaluation axes</span></div>
           </div>
 
           <figure class="wide-figure">
             <img src="assets/figures/fig2-pipeline.png" width="1600" height="1134" loading="lazy" decoding="async" alt="ACE-BENCH overview: setup of task, workspace and tools; execution through an agent harness under a collaboration strategy; evaluation across task utility, resource usage, and privacy.">
-            <figcaption>
+            <figcaption data-i18n="bench.caption">
               <strong>How a run is scored.</strong> Each task ships a workspace, tools, and a success checker. The harness
               executes the agent under a chosen collaboration strategy and records the full trace — model calls,
               tool results, token usage, and the exact context transmitted to the cloud — then scores it on all three axes.
@@ -300,33 +314,33 @@
           <div class="axis-grid">
             <article class="axis-card utility">
               <span class="axis-icon"><svg class="ic" aria-hidden="true"><use href="#ic-target"/></svg></span>
-              <h3>Task Utility</h3>
-              <p>Does the agent actually finish the job? A completion score and Pass<sup>n</sup>, combining rule-based
+              <h3 data-i18n="bench.a1h">Task Utility</h3>
+              <p data-i18n="bench.a1p">Does the agent actually finish the job? A completion score and Pass<sup>n</sup>, combining rule-based
               checks, environment-state auditing, and LLM-as-a-judge.</p>
             </article>
             <article class="axis-card cost">
               <span class="axis-icon"><svg class="ic" aria-hidden="true"><use href="#ic-coin"/></svg></span>
-              <h3>Resource Usage</h3>
-              <p>What does it cost? Cloud tokens (raw / cache-read / output), estimated monetary cost, and edge-side
+              <h3 data-i18n="bench.a2h">Resource Usage</h3>
+              <p data-i18n="bench.a2p">What does it cost? Cloud tokens (raw / cache-read / output), estimated monetary cost, and edge-side
               FLOPs — reported as a profile, never collapsed into one scalar.</p>
             </article>
             <article class="axis-card privacy">
               <span class="axis-icon"><svg class="ic" aria-hidden="true"><use href="#ic-shield"/></svg></span>
-              <h3>Privacy Performance</h3>
-              <p>What leaks? A risk-weighted non-leakage score over annotated <em>sensitivity units</em> — personal and
+              <h3 data-i18n="bench.a3h">Privacy Performance</h3>
+              <p data-i18n="bench.a3p">What leaks? A risk-weighted non-leakage score over annotated <em>sensitivity units</em> — personal and
               organizational secrets (12 subcategories) — checked against everything visible to the cloud.</p>
             </article>
           </div>
 
           <div class="taxonomy">
-            <span class="taxonomy-label">Task coverage</span>
+            <span class="taxonomy-label" data-i18n="bench.coverage">Task coverage</span>
             <ul>
-              <li>Information Retrieval</li>
-              <li>Content Generation</li>
-              <li>Data Analysis</li>
-              <li>Office Productivity</li>
-              <li>Development</li>
-              <li>Workflow Automation</li>
+              <li data-i18n="bench.cov1">Information Retrieval</li>
+              <li data-i18n="bench.cov2">Content Generation</li>
+              <li data-i18n="bench.cov3">Data Analysis</li>
+              <li data-i18n="bench.cov4">Office Productivity</li>
+              <li data-i18n="bench.cov5">Development</li>
+              <li data-i18n="bench.cov6">Workflow Automation</li>
             </ul>
           </div>
         </div>
@@ -336,9 +350,9 @@
       <section id="strategies" class="section">
         <div class="content-shell">
           <div class="section-head">
-            <span class="kicker">Collaboration Strategies</span>
-            <h2>Six ways to split work between edge and cloud.</h2>
-            <p class="section-lede">
+            <span class="kicker" data-i18n="strat.kicker">Collaboration Strategies</span>
+            <h2 data-i18n="strat.h2">Six ways to split work between edge and cloud.</h2>
+            <p class="section-lede" data-i18n="strat.lede">
               Two single-side baselines plus four representative collaboration patterns. They differ in one decisive
               dimension: <strong>when does the cloud participate</strong> — fixed before the task starts, or decided
               on the fly as the trajectory unfolds.
@@ -347,64 +361,64 @@
 
           <div class="strategy-columns">
             <div class="strategy-col">
-              <h3 class="col-title">Single-side baselines</h3>
+              <h3 class="col-title" data-i18n="strat.col1">Single-side baselines</h3>
               <div class="strategy-stack">
                 <article class="strategy-card">
-                  <span class="strat-kicker edge"><svg class="ic" aria-hidden="true"><use href="#ic-device"/></svg>Edge-only</span>
+                  <span class="strat-kicker edge"><svg class="ic" aria-hidden="true"><use href="#ic-device"/></svg><span data-i18n="strat.s1tag">Edge-only</span></span>
                   <div class="mini mini-edge" aria-hidden="true">
                     <span class="m-node m-edge">Edge</span>
                     <span class="m-step">S1</span><span class="m-step">S2</span><span class="m-step">S3</span>
                   </div>
-                  <p>Every step runs locally. No cloud exposure; capability bounded by the on-device model.</p>
+                  <p data-i18n="strat.s1p">Every step runs locally. No cloud exposure; capability bounded by the on-device model.</p>
                 </article>
                 <article class="strategy-card">
-                  <span class="strat-kicker cloud"><svg class="ic" aria-hidden="true"><use href="#ic-cloud"/></svg>Cloud-only</span>
+                  <span class="strat-kicker cloud"><svg class="ic" aria-hidden="true"><use href="#ic-cloud"/></svg><span data-i18n="strat.s2tag">Cloud-only</span></span>
                   <div class="mini mini-cloud" aria-hidden="true">
                     <span class="m-node m-cloud">Cloud</span>
                     <span class="m-step c">S1</span><span class="m-step c">S2</span><span class="m-step c">S3</span>
                   </div>
-                  <p>Every step runs in the cloud. The capability reference point — and the privacy/cost ceiling.</p>
+                  <p data-i18n="strat.s2p">Every step runs in the cloud. The capability reference point — and the privacy/cost ceiling.</p>
                 </article>
               </div>
             </div>
 
             <div class="strategy-col">
-              <h3 class="col-title">Pre-execution coordination <small>fixed before the task</small></h3>
+              <h3 class="col-title" data-i18n="strat.col2">Pre-execution coordination <small>fixed before the task</small></h3>
               <div class="strategy-stack">
                 <article class="strategy-card hybrid">
-                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-layers"/></svg>Sketch-Guided</span>
+                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-layers"/></svg><span data-i18n="strat.s3tag">Sketch-Guided</span></span>
                   <div class="mini mini-sketch" aria-hidden="true">
                     <span class="m-node m-cloud">Sketch</span><span class="m-arrow"></span><span class="m-node m-edge">Edge runs all steps</span>
                   </div>
-                  <p>The cloud writes an upfront plan; the edge model then executes the whole trajectory alone.</p>
+                  <p data-i18n="strat.s3p">The cloud writes an upfront plan; the edge model then executes the whole trajectory alone.</p>
                 </article>
                 <article class="strategy-card hybrid">
-                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-route"/></svg>Task-Level Routing</span>
+                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-route"/></svg><span data-i18n="strat.s4tag">Task-Level Routing</span></span>
                   <div class="mini mini-route" aria-hidden="true">
                     <span class="m-node m-router">Router</span><span class="m-branch"></span>
                     <span class="m-node m-edge">Edge</span><span class="m-node m-cloud">Cloud</span>
                   </div>
-                  <p>A one-time router assigns the entire task to either the edge or the cloud before it begins.</p>
+                  <p data-i18n="strat.s4p">A one-time router assigns the entire task to either the edge or the cloud before it begins.</p>
                 </article>
               </div>
             </div>
 
             <div class="strategy-col">
-              <h3 class="col-title">Runtime coordination <small>decided step by step</small></h3>
+              <h3 class="col-title" data-i18n="strat.col3">Runtime coordination <small>decided step by step</small></h3>
               <div class="strategy-stack">
                 <article class="strategy-card hybrid">
-                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-spark"/></svg>Step-Level Routing</span>
+                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-spark"/></svg><span data-i18n="strat.s5tag">Step-Level Routing</span></span>
                   <div class="mini mini-step" aria-hidden="true">
                     <span class="m-step">S1</span><span class="m-step">S2</span><span class="m-step c">Cloud</span><span class="m-step">S4</span>
                   </div>
-                  <p>The edge runs each step but escalates <em>uncertain</em> ones to the cloud as they arise.</p>
+                  <p data-i18n="strat.s5p">The edge runs each step but escalates <em>uncertain</em> ones to the cloud as they arise.</p>
                 </article>
                 <article class="strategy-card hybrid">
-                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-loop"/></svg>Adaptive Cloud Assistance</span>
+                  <span class="strat-kicker mix"><svg class="ic" aria-hidden="true"><use href="#ic-loop"/></svg><span data-i18n="strat.s6tag">Adaptive Cloud Assistance</span></span>
                   <div class="mini mini-assist" aria-hidden="true">
                     <span class="m-node m-edge">Edge agent</span><span class="m-assist">? &rarr;</span><span class="m-node m-cloud">Hint</span>
                   </div>
-                  <p>The edge stays in control and pulls cloud plans, hints, or recovery only when it asks for help.</p>
+                  <p data-i18n="strat.s6p">The edge stays in control and pulls cloud plans, hints, or recovery only when it asks for help.</p>
                 </article>
               </div>
             </div>
@@ -416,9 +430,9 @@
       <section id="findings" class="section section-soft">
         <div class="content-shell">
           <div class="section-head">
-            <span class="kicker">Key Findings</span>
-            <h2>What the three-axis view reveals.</h2>
-            <p class="section-lede">
+            <span class="kicker" data-i18n="find.kicker">Key Findings</span>
+            <h2 data-i18n="find.h2">What the three-axis view reveals.</h2>
+            <p class="section-lede" data-i18n="find.lede">
               Plotting every strategy in the same utility–cost–privacy space exposes trade-offs a single success rate
               would hide. Read each point as one strategy: <strong>right</strong> = more cloud cost,
               <strong>up</strong> = higher completion, and the <strong>number inside</strong> = privacy.
@@ -428,9 +442,9 @@
           <div class="findings-layout">
             <div class="plot-card">
               <div class="plot-axes-note">
-                <span><svg class="ic" aria-hidden="true"><use href="#ic-target"/></svg>Y · Completion</span>
-                <span><svg class="ic" aria-hidden="true"><use href="#ic-coin"/></svg>X · Cloud cost</span>
-                <span><svg class="ic" aria-hidden="true"><use href="#ic-shield"/></svg># · Privacy</span>
+                <span><svg class="ic" aria-hidden="true"><use href="#ic-target"/></svg><span data-i18n="find.axY">Y · Completion</span></span>
+                <span><svg class="ic" aria-hidden="true"><use href="#ic-coin"/></svg><span data-i18n="find.axX">X · Cloud cost</span></span>
+                <span><svg class="ic" aria-hidden="true"><use href="#ic-shield"/></svg><span data-i18n="find.axN"># · Privacy</span></span>
               </div>
               <canvas id="tradeoff-canvas" width="960" height="620" aria-label="Cloud cost versus completion score, with privacy shown inside each marker."></canvas>
               <noscript>
@@ -441,28 +455,28 @@
 
             <ol class="finding-list">
               <li class="finding">
-                <span class="finding-tag">Finding 1</span>
-                <h3>Single-side execution can't balance all three.</h3>
-                <p>Cloud-only tops utility but drops below 25% privacy; edge-only keeps 100% privacy but loses more
+                <span class="finding-tag" data-i18n="find.f1tag">Finding 1</span>
+                <h3 data-i18n="find.f1h">Single-side execution can't balance all three.</h3>
+                <p data-i18n="find.f1p">Cloud-only tops utility but drops below 25% privacy; edge-only keeps 100% privacy but loses more
                 than 10 points of completion. Each extreme sacrifices an axis.</p>
               </li>
               <li class="finding">
-                <span class="finding-tag">Finding 2</span>
-                <h3>Collaboration moves the operating point — when organized well.</h3>
-                <p>Edge-cloud strategies achieve a substantially better balance by invoking the cloud only when needed.
+                <span class="finding-tag" data-i18n="find.f2tag">Finding 2</span>
+                <h3 data-i18n="find.f2h">Collaboration moves the operating point — when organized well.</h3>
+                <p data-i18n="find.f2p">Edge-cloud strategies achieve a substantially better balance by invoking the cloud only when needed.
                 But the gain depends on <em>which</em> pattern: how cloud use and context transmission are arranged.</p>
               </li>
               <li class="finding">
-                <span class="finding-tag">Finding 3</span>
-                <h3>A stronger edge changes the best pattern.</h3>
-                <p>With a capable edge model, the preferred recipe shifts from step-level fallback toward task routing,
+                <span class="finding-tag" data-i18n="find.f3tag">Finding 3</span>
+                <h3 data-i18n="find.f3h">A stronger edge changes the best pattern.</h3>
+                <p data-i18n="find.f3p">With a capable edge model, the preferred recipe shifts from step-level fallback toward task routing,
                 planning, and recovery guidance — keeping utility while cutting cost and exposure
                 (Adaptive Assist.: <strong>$3.07</strong> vs cloud-only's <strong>$34.69</strong>).</p>
               </li>
             </ol>
           </div>
 
-          <p class="findings-footnote">
+          <p class="findings-footnote" data-i18n="find.footnote">
             Dashed contours group strategies sharing the same edge backbone. Hover any point for its exact numbers.
             The takeaway: future edge-cloud agents should treat cloud invocation as a joint model-use
             <em>and</em> context-sharing decision — not a simple quality–cost trade-off.
@@ -474,26 +488,26 @@
       <section id="resources" class="section">
         <div class="content-shell">
           <div class="section-head">
-            <span class="kicker">Resources &amp; Citation</span>
-            <h2>Reproduce it, extend it, cite it.</h2>
+            <span class="kicker" data-i18n="res.kicker">Resources &amp; Citation</span>
+            <h2 data-i18n="res.h2">Reproduce it, extend it, cite it.</h2>
           </div>
           <div class="resource-split">
             <div class="resource-cards">
               <a class="resource-card" href="https://github.com/OpenBMB/AceBench" target="_blank" rel="noopener">
                 <div class="res-head">
                   <span class="res-icon"><svg class="ic" aria-hidden="true"><use href="#ic-code"/></svg></span>
-                  <h3>Code &amp; Dataset</h3>
+                  <h3 data-i18n="res.c1h">Code &amp; Dataset</h3>
                 </div>
-                <p>Tasks, executable workspaces, verifiers, and every collaboration strategy implementation.</p>
+                <p data-i18n="res.c1p">Tasks, executable workspaces, verifiers, and every collaboration strategy implementation.</p>
                 <span class="res-go">github.com/OpenBMB/AceBench <svg class="ic" aria-hidden="true"><use href="#ic-arrow"/></svg></span>
               </a>
               <a class="resource-card" href="paper.pdf" target="_blank" rel="noopener">
                 <div class="res-head">
                   <span class="res-icon"><svg class="ic" aria-hidden="true"><use href="#ic-doc"/></svg></span>
-                  <h3>Full Paper</h3>
+                  <h3 data-i18n="res.c2h">Full Paper</h3>
                 </div>
-                <p>Formalization, task construction, privacy annotation protocol, and complete analysis.</p>
-                <span class="res-go">Read the PDF <svg class="ic" aria-hidden="true"><use href="#ic-arrow"/></svg></span>
+                <p data-i18n="res.c2p">Formalization, task construction, privacy annotation protocol, and complete analysis.</p>
+                <span class="res-go"><span data-i18n="res.c2go">Read the PDF</span> <svg class="ic" aria-hidden="true"><use href="#ic-arrow"/></svg></span>
               </a>
             </div>
 
@@ -501,7 +515,7 @@
               <div class="citation-head">
                 <h3>BibTeX</h3>
                 <button class="copy-btn" type="button" data-copy="#bibtex-code">
-                  <svg class="ic" aria-hidden="true"><use href="#ic-copy"/></svg><span>Copy</span>
+                  <svg class="ic" aria-hidden="true"><use href="#ic-copy"/></svg><span data-i18n="res.copy">Copy</span>
                 </button>
               </div>
               <pre><code id="bibtex-code">@misc{huang2026acebench,
@@ -527,20 +541,20 @@
           <span class="brand-mark">Ace</span>
           <div>
             <strong>ACE-BENCH</strong>
-            <span>Agentic edge-cloud collaboration for workspace-grounded LLM agents.</span>
+            <span data-i18n="footer.tagline">Agentic edge-cloud collaboration for workspace-grounded LLM agents.</span>
           </div>
         </div>
         <nav class="footer-links" aria-label="Footer">
-          <a href="#leaderboard">Leaderboard</a>
-          <a href="#problem">Problem</a>
-          <a href="#benchmark">Benchmark</a>
-          <a href="#strategies">Strategies</a>
-          <a href="#findings">Findings</a>
+          <a href="#leaderboard" data-i18n="nav.leaderboard">Leaderboard</a>
+          <a href="#problem" data-i18n="nav.problem">Problem</a>
+          <a href="#benchmark" data-i18n="nav.benchmark">Benchmark</a>
+          <a href="#strategies" data-i18n="nav.strategies">Strategies</a>
+          <a href="#findings" data-i18n="nav.findings">Findings</a>
           <a href="https://github.com/OpenBMB/AceBench" target="_blank" rel="noopener">GitHub</a>
         </nav>
       </div>
     </footer>
 
-    <script src="assets/app.js?v=20260624-r11"></script>
+    <script src="assets/app.js?v=20260625-i18n"></script>
   </body>
 </html>

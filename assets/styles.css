@@ -45,7 +45,7 @@
   --maxw: 1120px;
 
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sans:  "Inter", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -160,8 +160,22 @@ p { margin: 0; }
 .nav-cta:hover { color: #fff; background: #0b1311; }
 .nav-cta .ic { font-size: 16px; stroke-width: 1.9; }
 
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--ink-soft);
+  background: #fff; border: 1px solid var(--line); border-radius: 9px;
+  padding: 7px 12px; cursor: pointer;
+  transition: border-color .12s ease, color .12s ease, background .12s ease;
+}
+.lang-toggle .ic { font-size: 16px; }
+.lang-toggle:hover { color: var(--ink); border-color: #d7ddd8; background: var(--bg-tint); }
+
 @media (max-width: 860px) {
   .nav-links { display: none; }
+}
+@media (max-width: 460px) {
+  .lang-toggle span { display: none; }
+  .lang-toggle { padding: 7px 9px; }
 }
 
 /* ============================ HERO ============================ */
