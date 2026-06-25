@@ -443,7 +443,7 @@ function renderTradeoff() {
   canvas.style.width = "100%";
   const displayW = canvas.getBoundingClientRect().width || 760;
   const W = Math.max(560, displayW);
-  const H = Math.round(W * 0.52);
+  const H = Math.round(W * 0.56);
   canvas.style.height = `${H}px`;
   canvas.width = W * ratio;
   canvas.height = H * ratio;
@@ -454,7 +454,7 @@ function renderTradeoff() {
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
   ctx.clearRect(0, 0, W, H);
 
-  const margin = { top: 64, right: 28, bottom: 64, left: 64 };
+  const margin = { top: 92, right: 28, bottom: 64, left: 64 };
   const plot = { x: margin.left, y: margin.top, w: W - margin.left - margin.right, h: H - margin.top - margin.bottom };
   const { xMin, xMax, yMin, yMax } = PLOT;
 
@@ -652,9 +652,9 @@ function drawPointLabels(ctx, points, plot, W) {
 function drawLegend(ctx, plot) {
   ctx.save();
   let x = plot.x + 4;
-  const y = plot.y + 8;
+  const y = 24;  // above the grid (in the top margin), not inside the plot area
   ctx.textBaseline = "middle";
-  ctx.font = "700 11px Inter, system-ui, sans-serif";
+  ctx.font = "700 11px Inter, 'Noto Sans SC', system-ui, sans-serif";
 
   // Colour = collaboration method (matches the filled edge-cloud points).
   const methods = [
