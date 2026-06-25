@@ -3,7 +3,7 @@
   "metrics": {
     "tasks": 128,
     "privacyAnnotatedTasks": 100,
-    "strategyFamilies": 6,
+    "executionStrategies": 6,
     "evaluationAxes": 3
   },
   "results": [
@@ -89,7 +89,7 @@
       "cloudCost": 0.58,
       "edgeFlops": 148.45,
       "privacy": 100.0,
-      "year": 2024
+      "year": 2026
     },
     {
       "method": "Task-Level Routing",
@@ -103,7 +103,7 @@
       "cloudCost": 13.94,
       "edgeFlops": 85.91,
       "privacy": 88.81,
-      "year": 2024
+      "year": 2026
     },
     {
       "method": "Step-Level Routing",
@@ -145,7 +145,7 @@
       "cloudCost": 0.42,
       "edgeFlops": 546.56,
       "privacy": 100.0,
-      "year": 2024
+      "year": 2026
     },
     {
       "method": "Task-Level Routing",
@@ -159,7 +159,7 @@
       "cloudCost": 12.75,
       "edgeFlops": 181.75,
       "privacy": 84.32,
-      "year": 2024
+      "year": 2026
     },
     {
       "method": "Step-Level Routing",
